@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ module for calculating shape of matrix """
 
+
 def matrix_shape(matrix):
     """ function for matrix shape calc """
     shape = []
