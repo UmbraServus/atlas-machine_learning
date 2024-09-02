@@ -32,4 +32,3 @@ def add_matrices2D(mat1, mat2):
             result.append(arr3)
             i += 1
         return result
-
