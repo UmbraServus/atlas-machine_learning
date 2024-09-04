@@ -5,16 +5,8 @@ import matplotlib.pyplot as plt
 
 def line():
 
-    x = np.arange(0, 28651, 5730)
-    r = np.log(0.5)
-    t = 5730
-    y = np.exp((r / t) * x)
+    y = np.arange(0, 11) ** 3
     plt.figure(figsize=(6.4, 4.8))
-
-    plt.xlabel("Time (years)")
-    plt.ylabel("Fraction Remaining")
-    plt.title("Exponential Decay of C-14")
-    plt.yscale('log')
-    plt.xlim(0, 28650)
-    plt.plot(x, y, 'r-')
-    plt.show()
+    plt.xlim(0, len(y) - 1)
+    plt.plot(y, 'r-')
+    plt.show
