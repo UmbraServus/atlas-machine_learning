@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
+""" module combining all graphs into one figure and 5 subplots """
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def all_in_one():
+    """ method to produce a 3 x 2 subplot of graph 
+    data from previous lessons """
 
     y0 = np.arange(0, 11) ** 3
 
@@ -27,9 +31,13 @@ def all_in_one():
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
 
-    fig, ((ax1, ax2), (ax3, ax4), (ax5, ax6)) = plt.subplots(3, 2, figsize=(12, 12))
     plt.suptitle("All in One", fontsize='x-small')
-    
+    ax1 = plt.subplot2grid((3, 2), (0, 0)) 
+    ax2 = plt.subplot2grid((3, 2), (0, 1))
+    ax3 = plt.subplot2grid((3, 2), (1, 0))
+    ax4 = plt.subplot2grid((3, 2), (1, 1))
+    ax5 = plt.subplot2grid((3, 2), (2, 0), colspan=2)
+
     ax1.plot(y0,'r-')
     ax1.set_xlim(0, 10)
     ax1.set_yticks(np.arange(0, 1001, 500))
@@ -61,11 +69,8 @@ def all_in_one():
     ax5.set_ylabel('Number of Students', fontsize='x-small')
     ax5.set_xlim(0, 100)
     ax5.set_ylim(0, 30)
-
-    fig.delaxes(ax6)
+    ax5.set_yticks(np.arange(0, 31, 10))
     
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.tight_layout()
     plt.show()
-
-all_in_one()
-
+    
