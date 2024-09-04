@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+""" module for plotting a line graph wiht yscale log"""
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def change_scale():
+    """ method for plotting line graph with yscale log """
     x = np.arange(0, 28651, 5730)
     r = np.log(0.5)
     t = 5730
@@ -15,5 +17,5 @@ def change_scale():
     plt.title("Exponential Decay of C-14")
     plt.yscale('log')
     plt.xlim(0, 28650)
-    plt.plot(x,y)
+    plt.plot(x, y)
     plt.show()

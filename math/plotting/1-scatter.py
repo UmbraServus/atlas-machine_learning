@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+""" module for plotting a simple scatter plot """
 import numpy as np
 import matplotlib.pyplot as plt
 
-def scatter():
 
+def scatter():
+    """ method for plotting a simple scatter plot. """
     mean = [69, 0]
     cov = [[15, 8], [8, 15]]
     np.random.seed(5)
@@ -11,7 +13,7 @@ def scatter():
     y += 180
     plt.figure(figsize=(6.4, 4.8))
 
-    plt.scatter(x,y, c ="magenta")
+    plt.scatter(x, y, c="magenta")
     plt.show
     plt.xlabel("Height (in)")
     plt.ylabel("Weight (lbs)")
