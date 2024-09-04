@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def two():
 
     x = np.arange(0, 21000, 1000)
