@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """ module for adding two arrays element wise """
+
+
 def matrix_shape(matrix):
     """ function for matrix shape calc """
     shape = []
