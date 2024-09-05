@@ -8,7 +8,7 @@ def mat_mul(mat1, mat2):
     n2, p = len(mat2), len(mat2[0])
 
     if n != n2:
-        return None    
+        return None
     else:
         mat3 = [[0 for _ in range(p)]for _ in range(m)]
         for i in range(m):

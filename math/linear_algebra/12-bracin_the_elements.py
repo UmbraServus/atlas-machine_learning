@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""  module for doing simple arithmetic of 
+"""  module for doing simple arithmetic of
 2 matrices by the elements in a method """
 
 
