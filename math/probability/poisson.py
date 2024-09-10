@@ -31,15 +31,15 @@ class Poisson():
         for i in range(1, n + 1):
             result *= i
         return result
-    
+
     def pmf(self, k):
-        """ method for calc. p.m.f. (pmf = e**-lambtha * lambtha**k \ k!) 
-            
+        """ method for calc. p.m.f. (pmf = e**-lambtha * lambtha**k / k!)
+
             args:
                 k: number of successes """
 
         if not isinstance(k, int):
-           k = int(k)
+            k = int(k)
         if k < 0:
             return 0
         e = 2.7182818285
@@ -55,7 +55,7 @@ class Poisson():
                 k: number of successes """
 
         if not isinstance(k, int):
-           k = int(k)
+            k = int(k)
         if k < 0:
             return 0
         result = 0
