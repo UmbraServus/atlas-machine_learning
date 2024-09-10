@@ -21,7 +21,7 @@ class Poisson():
                 raise ValueError("data must contain multiple values")
             self.lambtha = sum(data) / len(data)
 
-            # Instance Methods
+    # Instance Methods
     def pmf(self, k):
         """ method for calc. p.m.f. (pmf = e**-lambtha * lambtha**k \ k!) 
             
