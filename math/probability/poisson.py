@@ -8,12 +8,12 @@ class Poisson():
                 data: list data used to estimate the distribution
                 lambtha: expected number of occur. in a given time frame
             """
-        if data is None:
-            self.data = lambtha
-            self.lambtha = lambtha
         if lambtha <= 0:
             raise ValueError(f"lambtha must be a positive value")
-        if data:
+        
+        if data is None:
+            self.lambtha = lambtha
+        else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
             if len(data) < 2:
