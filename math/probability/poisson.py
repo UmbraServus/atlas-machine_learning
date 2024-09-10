@@ -22,6 +22,16 @@ class Poisson():
             self.lambtha = sum(data) / len(data)
 
     # Instance Methods
+
+    def factorial(self, n):
+        """Compute the factorial of a non-negative integer n."""
+        if n < 0:
+            raise ValueError("n must be a non-negative integer")
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
+    
     def pmf(self, k):
         """ method for calc. p.m.f. (pmf = e**-lambtha * lambtha**k \ k!) 
             
@@ -35,9 +45,7 @@ class Poisson():
         e = 2.7182818285
         exp_term = e ** -self.lambtha
         lambtha_term = self.lambtha ** k
-        factorial_term = 1
-        for i in range(1, k + 1):
-            factorial_term *= i
+        factorial_term = self.factorial(k)
         return exp_term * lambtha_term / factorial_term
 
     def cdf(self, k):
