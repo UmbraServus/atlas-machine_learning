@@ -39,7 +39,7 @@ class Poisson():
                 k: number of successes """
 
         if not isinstance(k, int):
-            int(k)
+           k = int(k)
         if k < 0:
             return 0
         e = 2.7182818285
@@ -55,7 +55,7 @@ class Poisson():
                 k: number of successes """
 
         if not isinstance(k, int):
-            int(k)
+           k = int(k)
         if k < 0:
             return 0
         result = 0
