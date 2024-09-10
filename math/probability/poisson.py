@@ -13,7 +13,7 @@ class Poisson():
         if lambtha <= 0:
             raise ValueError(f"lambtha must be a positive value")
         if data is None:
-            self.lambtha = lambtha
+            self.lambtha = float(lambtha)
         else:
             if not isinstance(data, list):
                 raise TypeError("data must be a list")
@@ -27,11 +27,11 @@ class Poisson():
             
             args:
                 k: number of successes """
-        if k < 0:
-            return 0
+
         if not isinstance(k, int):
             int(k)
-
+        if k < 0:
+            return 0
         e = 2.7182818285
         exp_term = e ** -self.lambtha
         lambtha_term = self.lambtha ** k
@@ -45,10 +45,11 @@ class Poisson():
 
             args:
                 k: number of successes """
-        if k < 0:
-            return 0
+
         if not isinstance(k, int):
             int(k)
+        if k < 0:
+            return 0
         result = 0
         for i in range(0, k + 1):
             result += self.pmf(i)
