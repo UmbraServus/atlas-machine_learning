@@ -39,3 +39,17 @@ class Poisson():
         for i in range(1, k + 1):
             factorial_term *= i
         return exp_term * lambtha_term / factorial_term
+
+    def cdf(self, k):
+        """ method for calc. c.d.f. (cdf = P(X<=x) = pmf + pmf ...)
+
+            args:
+                k: number of successes """
+        if k < 0:
+            return 0
+        if not isinstance(k, int):
+            int(k)
+        result = 0
+        for i in range(0, k + 1):
+            result += self.pmf(i)
+        return result
