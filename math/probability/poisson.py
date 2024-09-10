@@ -3,6 +3,8 @@
 
 
 class Poisson():
+    """ Poisson class """
+
     def __init__(self, data=None, lambtha=1.):
         """ args:
                 data: list data used to estimate the distribution
@@ -10,7 +12,6 @@ class Poisson():
             """
         if lambtha <= 0:
             raise ValueError(f"lambtha must be a positive value")
-        
         if data is None:
             self.lambtha = lambtha
         else:
