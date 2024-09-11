@@ -20,3 +20,17 @@ class Exponential():
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = 1 / (sum(data) / len(data))
+
+        # instance methods
+
+    def pdf(self, x):
+        """ pdf for exponential distribution PDF = lambtha(e)^-lambtha(x))
+
+            args:
+                x: time period """
+        e = 2.7182818285
+        if x < 0:
+            return 0
+        e_exp = e ** (-self.lambtha * x)
+
+        return self.lambtha * e_exp
