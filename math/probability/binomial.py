@@ -26,5 +26,9 @@ class Binomial():
             total_trials = len(data) * max(data)
             successes = sum(data)
             self.p = successes / total_trials
-            self.n = round(max(data) / self.p)
-            self.p = successes / self.n
+            self.n = int(round(total_trials / self.p))
+            self.p = float(successes / self.n)
+            if self.n < 0:
+                raise ValueError("n must be a positive value")
+            if self.p < 0 or self.p > 1:
+                raise ValueError("p must be greater than 0 and less than 1")
