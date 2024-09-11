@@ -34,3 +34,13 @@ class Exponential():
         e_exp = e ** (-self.lambtha * x)
 
         return self.lambtha * e_exp
+
+    def cdf(self, x):
+        """ cdf for exponential distro. cdf = 1 - e^-lambtha(x)
+
+            args:
+                x: time period """
+        e = 2.7182818285
+        if x < 0:
+            return 0
+        return 1 - (e ** (-self.lambtha * x))
