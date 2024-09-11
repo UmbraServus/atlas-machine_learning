@@ -50,5 +50,3 @@ class Normal():
         """ method for calc normal dist. probability density function 
             1 / (stdd * (.5 ** (2*pie))) * e ** ((1/2*(x-u/stdd))**2)
             """
-        
-    
