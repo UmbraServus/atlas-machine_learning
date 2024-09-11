@@ -27,3 +27,19 @@ class Normal():
                 var += (data[x] - self.mean) ** 2
             var = var / len(data)
             self.stddev = var ** .5
+
+    # instance methods
+
+    def z_score(self, x):
+        """ method for calc z score
+            args:
+                x: the x value """
+        z = (x - self.mean) / self.stddev
+        return z
+
+    def x_value(self, z):
+        """ method for calc x value
+            args:
+                z: the z score """
+        x = (z * self.stddev) + self.mean
+        return x
