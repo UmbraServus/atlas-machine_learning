@@ -23,13 +23,8 @@ class Binomial():
                 raise TypeError("data must be a list")
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
-            total_trials = len(data)
+            total_trials = len(data) * max(data)
             successes = sum(data)
             self.p = successes / total_trials
-            self.n = round(total_trials)
-            self.p = float(self.p)
-            self.n = int(self.n)
-            if n < 0:
-                raise ValueError("n must be a positive value")
-            if p < 0 or p > 1:
-                raise ValueError("p must be greater than 0 and less than 1")
+            self.n = round(max(data) / self.p)
+            self.p = successes / self.n
