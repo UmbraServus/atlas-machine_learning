@@ -44,9 +44,15 @@ class Normal():
         x = (z * self.stddev) + self.mean
         return x
 
-    # instance methods
-
     def pdf(self, x):
         """ method for calc normal dist. probability density function 
-            1 / (stdd * (.5 ** (2*pie))) * e ** ((1/2*(x-u/stdd))**2)
+            1 / (stdd * (2 * pi) ** .5) * e ** (-.5 * z ** 2)
             """
+        pi = 3.1415926536
+        e = 2.7182818285
+        z = self.z_score(x)
+
+        pdf_normal_term1 = 1 / ( self.stddev * (2 * pi) ** .5)
+        pdf_normal_term2 = e ** (-.5 * z ** 2)
+        result = pdf_normal_term1 * pdf_normal_term2
+        return result
