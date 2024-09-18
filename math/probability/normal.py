@@ -28,6 +28,8 @@ class Normal():
             var = var / len(data)
             self.stddev = var ** .5
 
+        self.pi = 3.1415926536
+        self.e = 2.7182818285
     # instance methods
 
     def z_score(self, x):
@@ -48,11 +50,25 @@ class Normal():
         """ method for calc normal dist. probability density function 
             1 / (stdd * (2 * pi) ** .5) * e ** (-.5 * z ** 2)
             """
-        pi = 3.1415926536
-        e = 2.7182818285
         z = self.z_score(x)
 
-        pdf_normal_term1 = 1 / ( self.stddev * (2 * pi) ** .5)
-        pdf_normal_term2 = e ** (-.5 * z ** 2)
+        pdf_normal_term1 = 1 / ( self.stddev * (2 * self.pi) ** .5)
+        pdf_normal_term2 = self.e ** (-.5 * z ** 2)
         result = pdf_normal_term1 * pdf_normal_term2
+        return result
+    
+    def erf(self, x):
+        """erf calculations method"""
+        term1 = x ** 3 / 3
+        term2 = x ** 5 / 10
+        term3 = x ** 7 / 42
+        term4 = x ** 9 / 216
+        result = 2 / self.pi ** .5 * (x - term1 + term2 - term3 + term4)
+        return result
+
+    def cdf(self, x):
+        """method or calc norm dist culmulative dist. function
+           .5 * (1 + e * (z / 2 ** .5)) """
+
+        result = .5 * (1 + self.erf(x) * (self.z_score(x) / (2 ** .5)))
         return result
