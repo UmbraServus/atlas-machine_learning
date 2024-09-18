@@ -56,6 +56,21 @@ class Neuron():
                     m is the number of examples.
                 """
         m = Y.shape[1]
-        cost = -1 / m * np.sum(Y * np.log(self.__A) +
-                               (1 - Y) * np.log(1.0000001 - self.__A))
+        cost = -1 / m * np.sum(Y * np.log(A) +
+                               (1 - Y) * np.log(1.0000001 - A))
         return cost
+
+    def evaluate(self, X, Y):
+        """ method to evaluate the neurons predictions. meaning returning
+        cost and prediction based on activation output and comparison to
+        actual label data. 
+            args: 
+                X: "numpy.ndarray w/ shape" (nx, m), contains the input data
+                    nx is the number of input features to the neuron
+                    m is the number of examples
+                Y: "       " (1, m), contains the correct labels for the input data
+                """
+        predictions = self.forward_prop(X)
+        predictions = (self.__A >= 0.5).astype(int)
+        cost = self.cost(Y, self.__A)
+        return predictions, cost
