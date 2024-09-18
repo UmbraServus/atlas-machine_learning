@@ -38,7 +38,7 @@ class Neuron():
 # public methods
 
     def forward_prop(self, X):
-        """ method for forward prop. in a binary classification 
+        """ method for forward prop. in a binary classification
         args:
             X: numpy.ndarray w/ shape (nx, m) that conatains input data
                 m is the number of examples
