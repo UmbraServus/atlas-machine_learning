@@ -115,7 +115,7 @@ class Neuron():
 
         # forward prop
             A = self.forward_prop(X)
-        
+
         # calc gradients
             self.gradient_descent(X, Y, A)
 
