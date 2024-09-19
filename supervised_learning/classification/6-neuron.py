@@ -70,8 +70,8 @@ class Neuron():
                 Y: " " (1, m), contains the correct labels for the input data
                 """
         predictions = self.forward_prop(X)
+        cost = self.cost(Y, predictions)
         predictions = (predictions >= 0.5).astype(int)
-        cost = self.cost(Y, self.__A)
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
@@ -111,7 +111,7 @@ class Neuron():
             raise ValueError("alpha must be positive")
         
         # loop over iterations
-        for i in range(iterations + 1):
+        for i in range(iterations):
 
         # forward prop
             A = self.forward_prop(X)
