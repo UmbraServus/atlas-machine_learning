@@ -111,7 +111,7 @@ class Neuron():
             raise ValueError("alpha must be positive")
         
         # loop over iterations
-        for i in range(iterations):
+        for i in range(iterations + 1):
 
         # forward prop
             A = self.forward_prop(X)
