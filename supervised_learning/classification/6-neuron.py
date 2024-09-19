@@ -70,9 +70,9 @@ class Neuron():
                     m is the number of examples
                 Y: " " (1, m), contains the correct labels for the input data
                 """
-        predictions = self.forward_prop(X)
-        cost = self.cost(Y, predictions)
-        predictions = (predictions >= 0.5).astype(int)
+        A = self.forward_prop(X)
+        cost = self.cost(Y, A)
+        predictions = np.where(A >= 0.5, 1, 0)
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
@@ -104,13 +104,13 @@ class Neuron():
         # exceptions
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
+        if iterations < 1:
             raise ValueError("iterations must be a positive integer")
         if not isinstance(alpha, float):
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
-
+        
         # loop over iterations
         for i in range(iterations):
 
@@ -118,7 +118,7 @@ class Neuron():
             A = self.forward_prop(X)
 
         # calc gradients
-            self.gradient_descent(X, Y, A)
+            self.gradient_descent(X, Y, A, alpha)
 
         # return evaluation
         return self.evaluate(X, Y)

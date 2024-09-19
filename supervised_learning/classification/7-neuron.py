@@ -69,9 +69,9 @@ class Neuron():
                     m is the number of examples
                 Y: " " (1, m), contains the correct labels for the input data
                 """
-        predictions = self.forward_prop(X)
-        cost = self.cost(Y, predictions)
-        predictions = (predictions >= 0.5).astype(int)
+        A = self.forward_prop(X)
+        cost = self.cost(Y, A)
+        predictions = np.where(A >= 0.5, 1, 0)
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
