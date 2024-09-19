@@ -110,7 +110,7 @@ class Neuron():
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
-        
+
         # loop over iterations
         for i in range(iterations):
 

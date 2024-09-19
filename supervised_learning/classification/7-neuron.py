@@ -117,7 +117,7 @@ class Neuron():
             A = self.forward_prop(X)
         
         # calc gradients
-            self.gradient_descent(X, Y, A)
+            self.gradient_descent(X, Y, A, alpha)
 
         # return evaluation
         return self.evaluate(X, Y)
