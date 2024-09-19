@@ -28,6 +28,6 @@ class DeepNeuralNetwork():
                 input_size = nx
             else:
                 input_size = layers[l - 1]
-            self.weights[f'W{l}'] = (np.random.randn(layers[l], input_size)
+            self.weights[f'W{l + 1}'] = (np.random.randn(layers[l], input_size)
                                      * np.sqrt(2. / input_size))
-            self.weights[f'b{l}'] = np.zeros((layers[l], 1))
+            self.weights[f'b{l + 1}'] = np.zeros((layers[l], 1))
