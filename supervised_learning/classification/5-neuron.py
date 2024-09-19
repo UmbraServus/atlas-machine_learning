@@ -58,3 +58,35 @@ class Neuron():
         m = Y.shape[1]
         cost = -1 / m * np.sum(Y * np.log(self.__A) + (1 - Y) * np.log(1.0000001 - self.__A))
         return cost
+
+    def evaluate(self, X, Y):
+        """ method to evaluate the neurons predictions. meaning returning
+        cost and prediction based on activation output and comparison to
+        actual label data.
+            args:
+                X: "numpy.ndarray w/ shape" (nx, m), contains the input data
+                    nx is the number of input features to the neuron
+                    m is the number of examples
+                Y: " " (1, m), contains the correct labels for the input data
+                """
+        predictions = self.forward_prop(X)
+        predictions = (self.__A >= 0.5).astype(int)
+        cost = self.cost(Y, self.__A)
+        return predictions, cost
+
+    def gradient_descent(self, X, Y, A, alpha=0.05):
+        """Calculates one pass of gradient descent on the neuron
+        and updates the private b and W attributes.
+        Args:
+            X: "numpy.ndarray w/ shape" (nx, m) tht contains input data
+                nx is the number of input features to the neuron
+                m is the number of examples
+            Y: " " (1, m) tht contains correct labels for the input data
+            A: " " (1, m) containin the activ8d outp. of the neuron for ea ex
+            """
+        m = Y.shape[1]
+        error = A - Y
+        dW = 1 / m * np.dot(error, X.T)
+        db = 1 / m * np.sum(error)
+        self.__W -= alpha * dW
+        self.__b -= alpha * db
