@@ -4,6 +4,8 @@ import numpy as np
 
 
 class NeuralNetwork():
+    """class for NeuralNetwork """
+
     def __init__(self, nx, nodes):
         """ initialize nx and nodes
             nx: number of input featues
