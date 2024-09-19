@@ -49,7 +49,7 @@ class Neuron():
 
     def cost(self, Y, A):
         """Calculates the cost of the model using logistic regression
-            cost = - 1 / m * sum(Y * log(__A) + (1 - Y) * log(1 - __A)
+            cost = - 1 / m * sum(Y * log(A) + (1 - Y) * log(1 - A)
             args:
                 Y: "numpy.ndarray w shape (1, m)" contains labels for input
                 A: "  " contains the activated output of the neuron for ea ex.
@@ -71,7 +71,7 @@ class Neuron():
                 """
         predictions = self.forward_prop(X)
         predictions = (predictions >= 0.5).astype(int)
-        cost = self.cost(Y, predictions)
+        cost = self.cost(Y, self.__A)
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
