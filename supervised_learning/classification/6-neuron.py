@@ -71,8 +71,8 @@ class Neuron():
                 Y: " " (1, m), contains the correct labels for the input data
                 """
         predictions = self.forward_prop(X)
-        predictions = (self.__A >= 0.5).astype(int)
-        cost = self.cost(Y, self.__A)
+        predictions = (predictions >= 0.5).astype(int)
+        cost = self.cost(Y, predictions)
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
