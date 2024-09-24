@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """module for single neuron performing binary classification"""
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Neuron():
@@ -91,7 +92,8 @@ class Neuron():
         self.__W -= alpha * dW
         self.__b -= alpha * db
 
-    def train(self, X, Y, iterations=5000, alpha=0.05):
+    def train(self, X, Y, iterations=5000, alpha=0.05,
+              verbose=True, graph=True, step=100):
         """ Trains the neuron
             args:
                 X: ndarray shape (nx, m) tht contains the input data
@@ -109,15 +111,25 @@ class Neuron():
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
+        if not isinstance(step, int):
+            raise TypeError("step must be an integer")
+        if step < 0 or step > iterations:
+            raise ValueError("step must be positive and <= iterations")
 
-        # loop over iterations
-        for i in range(iterations):
-
-        # forward prop
+        costs = []
+        for i in range(iterations + 1):
             A = self.forward_prop(X)
-        
-        # calc gradients
+            cost = self.cost(Y, A)
             self.gradient_descent(X, Y, A, alpha)
 
-        # return evaluation
+            costs.append(cost)
+            if verbose and i % step == 0 or i == 0 or i == iterations:
+                print(f"Cost after {i} iterations: {cost} every {step} iterations")
+
+        if graph:
+            plt.plot(range(0, iterations + 1, step), costs[::step], 'b-')
+            plt.xlabel("iteration")
+            plt.ylabel("cost")
+            plt.title("Training Cost")
+            plt.show()
         return self.evaluate(X, Y)
