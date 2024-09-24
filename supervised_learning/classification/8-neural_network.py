@@ -4,7 +4,7 @@ import numpy as np
 
 
 class NeuralNetwork():
-    """class for NeuralNetwork """
+    """class for NeuralNetwork perfoming binary classification"""
 
     def __init__(self, nx, nodes):
         """ initialize nx and nodes
