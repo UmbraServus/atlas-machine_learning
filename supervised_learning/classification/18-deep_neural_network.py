@@ -23,18 +23,18 @@ class DeepNeuralNetwork():
         self.__L = len(layers)
         self.__cache = dict()
         self.__weights = {}
-        for l in range(self.__L):
-            if not isinstance(layers[l], int) or layers[l] < 1:
+        for i in range(self.__L):
+            if not isinstance(layers[i], int) or layers[i] < 1:
                 raise TypeError("layers must be a list of positive integers")
-            if l == 0:
+            if i == 0:
                 input_size = nx
             else:
-                input_size = layers[l - 1]
-            self.__weights[f'W{l + 1}'] = (
-                np.random.randn(layers[l], input_size)
+                input_size = layers[i - 1]
+            self.__weights[f'W{i + 1}'] = (
+                np.random.randn(layers[i], input_size)
                 * np.sqrt(2. / input_size)
                 )
-            self.__weights[f'b{l + 1}'] = np.zeros((layers[l], 1))
+            self.__weights[f'b{i + 1}'] = np.zeros((layers[i], 1))
 
         # getters
     @property
@@ -61,11 +61,11 @@ class DeepNeuralNetwork():
             nx is the number of input features to the neuron
             m is the number of examples"""
         self.__cache['A0'] = X
-        for l in range(self.__L):
-            W = self.__weights[f'W{l + 1}']
-            b = self.__weights[f'b{l + 1}']
-            A1 = self.cache[f'A{l}']
+        for i in range(self.__L):
+            W = self.__weights[f'W{i + 1}']
+            b = self.__weights[f'b{i + 1}']
+            A1 = self.cache[f'A{i}']
             z = np.dot(W, A1) + b
             A2 = 1 / (1 + np.exp(-z))
-            self.__cache[f'A{l + 1}'] = A2
+            self.__cache[f'A{i + 1}'] = A2
         return A2, self.__cache
