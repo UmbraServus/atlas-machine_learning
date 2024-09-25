@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ module doc """
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 class NeuralNetwork():
     """class for NeuralNetwork """
@@ -98,7 +98,7 @@ class NeuralNetwork():
         cost = self.cost(Y, A2)
         predictions = np.where(A2 >= 0.5, 1, 0)
         return predictions, cost
-    
+
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """Calculates one pass of gradient descent on the neural network
             and updates private b and W attributes.
