@@ -111,10 +111,11 @@ class Neuron():
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
-        if not isinstance(step, int):
-            raise TypeError("step must be an integer")
-        if step < 0 or step > iterations:
-            raise ValueError("step must be positive and <= iterations")
+        if graph or verbose:
+            if not isinstance(step, int):
+                raise TypeError("step must be an integer")
+            if step < 0 or step > iterations:
+                raise ValueError("step must be positive and <= iterations")
 
         costs = []
         for i in range(iterations + 1):
@@ -122,8 +123,8 @@ class Neuron():
             cost = self.cost(Y, A)
             self.gradient_descent(X, Y, A, alpha)
 
-            costs.append(cost)
             if verbose and i % step == 0 or i == 0 or i == iterations:
+                costs.append(cost)
                 print(f"Cost after {i} iterations: {cost} every {step} iterations")
 
         if graph:
