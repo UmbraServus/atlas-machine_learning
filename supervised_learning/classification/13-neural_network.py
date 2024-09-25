@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ module doc """
 import numpy as np
-import matplotlib.pyplot as plt
+
 
 class NeuralNetwork():
     """class for NeuralNetwork """
