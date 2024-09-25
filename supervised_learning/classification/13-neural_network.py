@@ -97,6 +97,30 @@ class NeuralNetwork():
         A1, A2 = self.forward_prop(X)
         cost = self.cost(Y, A2)
         predictions = np.where(A2 >= 0.5, 1, 0)
-        return predictions, cost#!/usr/bin/env python3
-""" module doc """
-import numpy as np
+        return predictions, cost
+    
+    def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
+        """Calculates one pass of gradient descent on the neural network
+            and updates private b and W attributes.
+            args:
+                X: a numpy.ndarray with shape (nx, m) contains input data
+                    nx: the number of input features to the neuron
+                    m: the number of examples
+                Y: np array w/ shape 1, m that contains the corr. labels for
+                the input data
+                A1: the output of the hidden layer
+                A2: the predicted output
+                alpha: the learning rate"""
+        m = Y.shape[1]
+        error_dZ2 = A2 - Y
+        dW2 = 1 / m * np.dot(error_dZ2, A1.T)
+        db2 = 1 / m * np.sum(error_dZ2, axis=1, keepdims=True)
+
+        error_dZ1 = np.dot(self.__W2.T, error_dZ2) * (A1 * (1 - A1))
+        dW1 = 1 / m * np.dot(error_dZ1, X.T)
+        db1 = 1 / m * np.sum(error_dZ1, axis=1, keepdims=True)
+
+        self.__W2 -= alpha * dW2
+        self.__b2 -= alpha * db2
+        self.__W1 -= alpha * dW1
+        self.__b1 -= alpha * db1

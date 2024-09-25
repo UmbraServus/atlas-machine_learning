@@ -73,7 +73,7 @@ class NeuralNetwork():
 
         return self.__A1, self.__A2
 
-    def cost(self,Y , A):
+    def cost(self, Y, A):
         """ calc the cost of the model using logi regression
             cost = - 1 / m * sum(Y * log(A) + (1 - Y) * log(1 - A)
             args:
