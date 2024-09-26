@@ -116,6 +116,9 @@ class DeepNeuralNetwork():
             dW = 1 / m * np.dot(dZ, prev_A.T)
             db = 1 / m * np.sum(dZ, axis=1, keepdims=True)
 
-            dZ = np.dot(self.__weights[f"W{i}"].T, dZ) * (prev_A * (1 - prev_A))
+            dZ = (
+                np.dot(self.__weights[f"W{i}"].T, dZ)
+                * (prev_A * (1 - prev_A))
+                  )
             self.__weights[f'W{i}'] -= alpha * dW
             self.__weights[f'b{i}'] -= alpha * db
