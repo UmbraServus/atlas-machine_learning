@@ -24,5 +24,7 @@ def one_hot_encode(Y, classes):
         if label < classes:
             #encode it to 1 at the label row and idx column
             one_hot_encode[label, idx] = 1
+        else:
+            return None
     
     return one_hot_encode
