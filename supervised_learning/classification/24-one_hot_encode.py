@@ -16,15 +16,15 @@ def one_hot_encode(Y, classes):
     if not isinstance(classes, int) or classes < 2:
         return None
     m = Y.shape[0]
-    #initialze 2d array with zeros
+    # initialze 2d array with zeros
     one_hot_encode = np.zeros((classes, m))
-    #loop thru each label in Y
+    # loop thru each label in Y
     for idx, label in enumerate(Y):
-        #check to see if 0 <= label < classes(int)
+        # check to see if 0 <= label < classes(int)
         if label < classes:
-            #encode it to 1 at the label row and idx column
+            # encode it to 1 at the label row and idx column
             one_hot_encode[label, idx] = 1
         else:
             return None
-    
+
     return one_hot_encode
