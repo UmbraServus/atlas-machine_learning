@@ -122,7 +122,7 @@ class DeepNeuralNetwork():
                   )
             self.__weights[f'W{i}'] -= alpha * dW
             self.__weights[f'b{i}'] -= alpha * db
-    
+
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """ Trains the neuron
             args:
