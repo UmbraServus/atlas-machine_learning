@@ -13,7 +13,7 @@ def one_hot_encode(Y, classes):
             """
     if not isinstance(Y, np.ndarray) or len(Y.shape) != 1:
         return None
-    if not isinstance(classes, int) or classes < 1:
+    if not isinstance(classes, int) or classes < 2:
         return None
     m = Y.shape[0]
     #initialze 2d array with zeros
