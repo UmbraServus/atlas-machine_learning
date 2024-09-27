@@ -9,6 +9,6 @@ def one_hot_decode(one_hot):
         one_hot: one-hot encoded ndarray with shape (classes, m)
             classes: the maximum number of classes
             m: the number of examples"""
-    if not isinstance(one_hot, np.ndarray) or one_hot.shape[0] < 2:
+    if not isinstance(one_hot, np.ndarray) or one_hot.ndim < 2:
         return None
     return np.argmax(one_hot, axis=0)
