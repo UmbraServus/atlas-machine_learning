@@ -2,6 +2,7 @@
 """ deep neural network module """
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
 
 class DeepNeuralNetwork():
     """ DeepNeuralNetwork Class """
@@ -165,4 +166,19 @@ class DeepNeuralNetwork():
             plt.show()
         return self.evaluate(X, Y)
 
+    def save(self, filename):
+        """ serialized pkl file"""
+        if not filename.endswith('.pkl'):
+            filename += '.pkl'
 
+        with open(filename, 'wb') as file:
+            pickle.dump(self, file)
+
+    @staticmethod
+    def load(filename):
+        """ deserializes pkl file."""
+        if filename:
+            with open(filename, 'rb') as file:
+                return pickle.load(file)
+        else:
+            return None
