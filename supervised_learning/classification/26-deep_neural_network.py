@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+import os
 
 class DeepNeuralNetwork():
     """ DeepNeuralNetwork Class """
@@ -177,7 +178,9 @@ class DeepNeuralNetwork():
     @staticmethod
     def load(filename):
         """ deserializes pkl file."""
-        if filename:
+        if not filename.endswith('.pkl'):
+            filename += '.pkl'
+        if os.path.isfile(filename):
             with open(filename, 'rb') as file:
                 return pickle.load(file)
         else:
