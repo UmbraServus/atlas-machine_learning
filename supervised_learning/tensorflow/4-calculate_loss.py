@@ -3,7 +3,7 @@
 import tensorflow.compat.v1 as tf
 
 
-def calculate_loss(y, y_pred): 
+def calculate_loss(y, y_pred):
     """ that calculates the softmax cross-entropy loss of a prediction:
     args:
         y: a placeholder for the labels of the input data
