@@ -4,7 +4,7 @@ import tensorflow.compat.v1 as tf
 create_layer = __import__('1-create_layer').create_layer
 
 
-def forward_prop(x, layer_sizes=[], activations=[]): 
+def forward_prop(x, layer_sizes=[], activations=[]):
     """that creates the forward propagation graph for the neural network
     args:
         x: the placeholder for the input data
@@ -21,7 +21,7 @@ def forward_prop(x, layer_sizes=[], activations=[]):
     for i in range(len(layer_sizes)):
         layer_output = create_layer(
             layer_output,
-            layer_sizes[i], 
+            layer_sizes[i],
             activations[i]
             )
     return layer_output
