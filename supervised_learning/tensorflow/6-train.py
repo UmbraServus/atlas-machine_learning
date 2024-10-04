@@ -8,7 +8,8 @@ calculate_loss = __import__('4-calculate_loss').calculate_loss
 create_train_op = __import__('5-create_train_op').create_train_op
 
 
-def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, iterations, save_path="/tmp/model.ckpt"):
+def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
+          alpha, iterations, save_path="/tmp/model.ckpt"):
     """
     Builds, trains, and saves a neural network classifier.
 
@@ -17,8 +18,10 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, i
     Y_train: numpy.ndarray containing the training labels
     X_valid: numpy.ndarray containing the validation input data
     Y_valid: numpy.ndarray containing the validation labels
-    layer_sizes: list containing the number of nodes in each layer of the network
-    activations: list containing the activation functions for each layer of the network
+    layer_sizes: list containing the number of nodes in 
+    each layer of the network
+    activations: list containing the activation functions 
+    for each layer of the network
     alpha: learning rate
     iterations: number of iterations to train over
     save_path: path to save the model
@@ -39,13 +42,28 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations, alpha, i
     
         for i in range(iterations + 1):
             if i > 0:
-                _, cost = sess.run([train_op, loss], feed_dict={x: X_train, y: Y_train})
+                _, cost = sess.run(
+                    [train_op, loss],
+                    feed_dict={x: X_train, y: Y_train}
+                    )
             else:
-                training_cost = sess.run(loss, feed_dict={x: X_train, y: Y_train})
+                training_cost = sess.run(
+                    loss,
+                    feed_dict={x: X_train, y: Y_train}
+                    )
         
-            training_accuracy = sess.run(accuracy, feed_dict={x: X_train, y: Y_train})
-            validation_cost = sess.run(loss, feed_dict={x: X_valid, y: Y_valid})
-            validation_accuracy = sess.run(accuracy, feed_dict={x: X_valid, y: Y_valid})
+            training_accuracy = sess.run(
+                accuracy,
+                feed_dict={x: X_train, y: Y_train}
+                )
+            validation_cost = sess.run(
+                loss,
+                feed_dict={x: X_valid, y: Y_valid}
+                )
+            validation_accuracy = sess.run(
+                accuracy,
+                feed_dict={x: X_valid, y: Y_valid}
+                )
 
             if i % 100 == 0 or i == iterations:
                 print(f"After {i} iterations:")
