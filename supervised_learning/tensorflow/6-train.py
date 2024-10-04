@@ -40,7 +40,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
 
     with tf.compat.v1.Session(graph=graph) as sess:
         sess.run(tf.compat.v1.global_variables_initializer())
-    
+
         for i in range(iterations + 1):
             if i > 0:
                 _, cost = sess.run(
@@ -52,7 +52,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
                     loss,
                     feed_dict={x: X_train, y: Y_train}
                     )
-        
+
             training_accuracy = sess.run(
                 accuracy,
                 feed_dict={x: X_train, y: Y_train}
@@ -72,7 +72,7 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
                 print(f"\tTraining Accuracy: {training_accuracy}")
                 print(f"\tValidation Cost: {validation_cost}")
                 print(f"\tValidation Accuracy: {validation_accuracy}")
-    
+
         saver = tf.compat.v1.train.Saver()
         save_path = saver.save(sess, save_path)
     return save_path
