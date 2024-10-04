@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""module for learning tensorflow and setting up a simple neural network."""
 import tensorflow.compat.v1 as tf
 tf.compat.v1.disable_eager_execution()
 create_placeholders = __import__('0-create_placeholders').create_placeholders
