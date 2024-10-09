@@ -5,7 +5,7 @@ shuffle_data = __import__('2-shuffle_data').shuffle_data
 
 
 def create_mini_batches(X, Y, batch_size):
-    """ that creates mini-batches to be used for training a neural 
+    """ that creates mini-batches to be used for training a neural
     network using mini-batch gradient descent
     args:
         X is a numpy.ndarray of shape (m, nx) representing input data
@@ -18,7 +18,7 @@ def create_mini_batches(X, Y, batch_size):
     Returns: list of mini-batches containing tuples (X_batch, Y_batch)"""
     mini_batches = []
     m = X.shape[0]
-    X_shuff, Y_shuff = shuffle_data(X,Y)
+    X_shuff, Y_shuff = shuffle_data(X, Y)
     for i in range(0, m, batch_size):
         end_idx = min(i + batch_size, m)
         X_batch = X_shuff[i:end_idx]
