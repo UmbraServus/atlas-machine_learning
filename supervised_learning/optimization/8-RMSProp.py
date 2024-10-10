@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ module documentaion """
-import tensorflow as tf
+import tensorflow as tf 
 
 
 def create_RMSProp_op(alpha, beta2, epsilon):
@@ -10,3 +10,10 @@ def create_RMSProp_op(alpha, beta2, epsilon):
         beta2: the RMSProp weight (Discounting factor)
         epsilon: a small number to avoid division by zero
     Returns: optimizer """
+
+    optimizer = tf.keras.optimizers.RMSProp(
+        learning_rate=alpha,
+        rho=beta2,
+        epsilon=epsilon
+    )
+    return optimizer
