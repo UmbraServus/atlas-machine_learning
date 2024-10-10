@@ -4,7 +4,7 @@
 
 def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     """ updates a variable using the RMSProp optimization algorithm
-    args:    
+    args:
         alpha: the learning rate
         beta2: the RMSProp weight
         epsilon: a small number to avoid division by zero
