@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def batch_norm(Z, gamma, beta, epsilon): 
+def batch_norm(Z, gamma, beta, epsilon):
     """ normalizes an unactivated output of a neural network using
     batch normalization:
     args:
