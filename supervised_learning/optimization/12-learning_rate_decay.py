@@ -4,7 +4,7 @@ import tensorflow as tf
 
 
 def learning_rate_decay(alpha, decay_rate, decay_step):
-    """ creates a learning rate decay operation in tensorflow 
+    """ creates a learning rate decay operation in tensorflow
     using inverse time decay
         the learning rate decay should occur in a stepwise fashion
     args:
