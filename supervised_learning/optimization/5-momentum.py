@@ -1,4 +1,4 @@
-#1/usr/bin/env python3
+#!/usr/bin/env python3
 """module for updating a variable using grad. descent w// momentum opti alg."""
 
 
