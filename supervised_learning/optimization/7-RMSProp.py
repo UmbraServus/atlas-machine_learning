@@ -2,6 +2,7 @@
 """ module documentation"""
 import numpy as np
 
+
 def update_variables_RMSProp(alpha, beta2, epsilon, var, grad, s):
     """ updates a variable using the RMSProp optimization algorithm
     args:
