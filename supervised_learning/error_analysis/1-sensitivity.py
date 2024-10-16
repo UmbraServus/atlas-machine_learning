@@ -3,11 +3,11 @@
 import numpy as np
 
 
-def sensitivity(confusion): 
+def sensitivity(confusion):
     """that calculates the sensitivity for each class in a confusion matrix
         Sensitivity = TP / TP + FN
     args:
-        confusion: np.ndarr shape (classes, classes) row idxs represent the 
+        confusion: np.ndarr shape (classes, classes) row idxs represent the
             corr labels & col idxs repre the pred labels
             classes is the number of classes
     Returns: np.ndarray shape (classes,) containing sensitivity of ea class"""
