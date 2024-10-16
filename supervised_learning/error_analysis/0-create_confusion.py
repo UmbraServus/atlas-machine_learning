@@ -16,7 +16,7 @@ Returns: a confusion np.ndarray of shape (classes, classes) w/ row idxs
     classes = logits.shape[1]
     y_true = np.argmax(labels, axis=1)
     y_pred = np.argmax(logits, axis=1)
-    confusion_mat = np.zeros((classes, classes), dtype=int)
+    confusion_mat = np.zeros((classes, classes), dtype=float)
 
     np.add.at(confusion_mat,(y_true, y_pred), 1)
     return confusion_mat
