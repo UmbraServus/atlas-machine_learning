@@ -11,7 +11,7 @@ def specificity(confusion):
         confusion: np.ndarr shape (classes, classes) row idxs represent the
             corr labels & col idxs repre the pred labels
             classes is the number of classes
-        Returns: np.ndarr of shape (classes,) containing specificity of ea class """
+    Returns: np.ndarr shape (classes,) containing specificity of ea class """
     TP = np.diag(confusion)
     FN = np.sum(confusion, axis=1) - TP
     FP = np.sum(confusion, axis=0) - TP
