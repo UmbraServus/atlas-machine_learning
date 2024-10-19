@@ -12,9 +12,7 @@ def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
         cache: dictionary of the outputs of ea. layer of the neural network
         alpha: the learning rate
         lambtha: the L2 regularization parameter
-        L: the number of layers of the network
-        The neural network uses tanh activations on each layer except the last, which uses a softmax activation
-        The weights and biases of the network should be updated in place """
+        L: the number of layers of the network """
     m = Y.shape[1]
     dZ = cache[f"A{L}"] - Y
 
