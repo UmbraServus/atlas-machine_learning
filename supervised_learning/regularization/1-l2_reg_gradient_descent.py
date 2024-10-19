@@ -2,6 +2,7 @@
 """ module for L2 reg w gradient descent """
 import numpy as np
 
+
 def l2_reg_gradient_descent(Y, weights, cache, alpha, lambtha, L):
     """ updates the weights & biases of a neural network usin grad desc w/ L2
     args:
