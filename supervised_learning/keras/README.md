@@ -1,0 +1,1 @@
+0-sequential.py - using tf.keras to build a NN with a for loop to build each layer.
