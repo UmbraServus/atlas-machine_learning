@@ -15,7 +15,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     Returns: the keras model"""
 
     model = K.Sequential()
-    
+
     for i in range(len(layers)):
         if i == 0:
             model.add(K.layers.Dense(
