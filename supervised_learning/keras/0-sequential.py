@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """  module for building a NN with Keras"""
-import tensorflow.keras as k
+import tensorflow.keras as K
 
 
 def build_model(nx, layers, activations, lambtha, keep_prob):
@@ -14,6 +14,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     You are not allowed to use the Input class
     Returns: the keras model"""
 
-    model = k.keras.Sequential([
+    model = K.Sequential()
 
-    ])
+    for i in range(len(layers):
+                   
