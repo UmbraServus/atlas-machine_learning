@@ -58,10 +58,15 @@ def train_model(network, data, labels, batch_size, epochs,
                 epoch: number of passes thru data"""
             lr = alpha / (1 + decay_rate * epoch)
             return lr
-        callbacks.append(K.callbacks.LearningRateScheduler(lr_schedule, verbose=1))
+        callbacks.append(
+            K.callbacks.LearningRateScheduler(lr_schedule, verbose=1)
+            )
 
     optimizer = K.optimizers.Adam(learning_rate=alpha)
-    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'], )
+    model.compile(
+        optimizer=optimizer,
+        loss='categorical_crossentropy',
+        metrics=['accuracy'], )
 
     return model.fit(
         data,
