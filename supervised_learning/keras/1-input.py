@@ -12,13 +12,13 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         lambtha: L2 regularization parameter
         keep_prob: probability that a node will be kept for dropout
     Returns: the keras model"""
-
     inputs = K.Input(shape=(nx, ))
-
-    for i in range(len(layers)):
-        x = K.layers.Dense(64, activation=activations[i])(inputs)
-        if i < len(layers) - 1:
+    x = inputs
+    Layers = len(layers)
+    for i in range(Layers - 1):
+        x = K.layers.Dense(layers[i], activation=activations[i])(x)
+        if i < Layers - 1:
             x = K.layers.Dropout(keep_prob)(x)
-        outputs = K.layers.Dense(1, activation=activations[i])
+    outputs = K.layers.Dense(layers[-1], activation=activations[-1])(x)
     model = K.models.Model(inputs=inputs, outputs=outputs)
     return model
