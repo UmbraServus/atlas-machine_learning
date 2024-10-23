@@ -15,7 +15,7 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     inputs = K.Input(shape=(nx, ))
     x = inputs
     Layers = len(layers)
-    for i in range(Layers - 1):
+    for i in range(Layers):
         x = K.layers.Dense(
             layers[i],
             activation=activations[i],
@@ -23,6 +23,5 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
             )(x)
         if i < Layers - 1:
             x = K.layers.Dropout(1 - keep_prob)(x)
-    outputs = K.layers.Dense(layers[-1], activation=activations[-1])(x)
-    model = K.models.Model(inputs=inputs, outputs=outputs)
+    model = K.models.Model(inputs=inputs, outputs=x)
     return model
