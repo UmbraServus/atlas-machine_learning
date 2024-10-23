@@ -16,7 +16,11 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
     x = inputs
     Layers = len(layers)
     for i in range(Layers - 1):
-        x = K.layers.Dense(layers[i], activation=activations[i])(x)
+        x = K.layers.Dense(
+            layers[i],
+            activation=activations[i],
+            kernel_regularizer=K.regularizers.L2(lambtha)
+            )(x)
         if i < Layers - 1:
             x = K.layers.Dropout(1 - keep_prob)(x)
     outputs = K.layers.Dense(layers[-1], activation=activations[-1])(x)
