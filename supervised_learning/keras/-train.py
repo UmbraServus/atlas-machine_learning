@@ -6,7 +6,8 @@ import tensorflow.keras as K
 def train_model(network, data, labels, batch_size, epochs,
                 validation_data=None, early_stopping=False, patience=0,
                 learning_rate_decay=False, alpha=0.1, decay_rate=1,
-                verbose=True, shuffle=False):
+                save_best=False, filepath=None, verbose=True,
+                shuffle=False):
     """ that trains a model using mini-batch gradient descent
     args:
         network: model to train
@@ -54,7 +55,7 @@ def train_model(network, data, labels, batch_size, epochs,
     if learning_rate_decay and validation_data:
         def lr_schedule(epoch):
             """learning rate schedule formula.
-            args:
+            args: 
                 epoch: number of passes thru data"""
             lr = alpha / (1 + decay_rate * epoch)
             return lr
