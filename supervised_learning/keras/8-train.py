@@ -38,6 +38,13 @@ def train_model(network, data, labels, batch_size, epochs,
 
         decay_rate: decay rate
 
+        save_best: bool indicating whether to save the model after ea epoch
+        if it is the best
+            model is considered the best if its validation loss is
+            the lowest that the model has obtained
+
+        filepath: file path where the model should be saved
+
         verbose: boolean determines if output shld be printed during training
 
         shuffle: boolean that determines whether to shuffle the batches
@@ -55,7 +62,7 @@ def train_model(network, data, labels, batch_size, epochs,
     if learning_rate_decay and validation_data:
         def lr_schedule(epoch):
             """learning rate schedule formula.
-            args: 
+            args:
                 epoch: number of passes thru data"""
             lr = alpha / (1 + decay_rate * epoch)
             return lr
