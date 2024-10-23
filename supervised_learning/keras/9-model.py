@@ -3,7 +3,7 @@
 import tensorflow.keras as K
 
 
-def save_model(network, filename): 
+def save_model(network, filename):
     """ saves an entire model
     args:
         network: the model to save
@@ -13,9 +13,10 @@ def save_model(network, filename):
     network.save(filename)
     return None
 
-def load_model(filename): 
+
+def load_model(filename):
     """ loads an entire model:
-    args:    
+    args:
         filename: the path of the file that the model should be loaded from
     Returns: the loaded model """
 
