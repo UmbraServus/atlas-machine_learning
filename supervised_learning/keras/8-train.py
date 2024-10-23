@@ -69,17 +69,11 @@ def train_model(network, data, labels, batch_size, epochs,
         callbacks.append(
             K.callbacks.LearningRateScheduler(lr_schedule, verbose=1)
             )
-
-    callbacks.append(K.callbacks.ModelCheckpoint(
-        filepath=filepath,
-        save_best_only=save_best
-    ))
-
-    optimizer = K.optimizers.Adam(learning_rate=alpha)
-    model.compile(
-        optimizer=optimizer,
-        loss='categorical_crossentropy',
-        metrics=['accuracy'], )
+    if filepath:
+        callbacks.append(K.callbacks.ModelCheckpoint(
+            filepath=filepath,
+            save_best_only=save_best
+        ))
 
     return model.fit(
         data,
