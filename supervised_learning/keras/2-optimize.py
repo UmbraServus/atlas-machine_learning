@@ -2,6 +2,7 @@
 """module for settin up adam optimization using keras """
 import tensorflow.keras as K
 
+
 def optimize_model(network, alpha, beta1, beta2):
     """sets up Adam optimization for a keras model w/ categorical crossentropy
     loss and accuracy metrics
