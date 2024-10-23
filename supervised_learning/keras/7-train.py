@@ -7,7 +7,7 @@ def train_model(network, data, labels, batch_size, epochs,
                 validation_data=None, early_stopping=False, patience=0,
                 learning_rate_decay=False, alpha=0.1, decay_rate=1,
                 verbose=True, shuffle=False):
-    """ that trains a model using mini-batch gradient descent:
+    """ that trains a model using mini-batch gradient descent
     args:
         network: model to train
 
@@ -44,17 +44,30 @@ def train_model(network, data, labels, batch_size, epochs,
         reproducibility, we have chosen to set the default to False.
 
     Returns: the History object generated after training the model """
-
+    callbacks = []
     model = network
     if early_stopping and validation_data:
-        callback = K.callbacks.EarlyStopping(
+        callbacks.append(K.callbacks.EarlyStopping(
             patience=patience
-        )
+        ))
+
+    if learning_rate_decay and validation_data:
+        def lr_schedule(epoch):
+            """learning rate schedule formula.
+            args: 
+                epoch: number of passes thru data"""
+            lr = alpha / (1 + decay_rate * epoch)
+            return lr
+        callbacks.append(K.callbacks.LearningRateScheduler(lr_schedule, verbose=1))
+
+    optimizer = K.optimizers.Adam(learning_rate=alpha)
+    model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'], )
+
     return model.fit(
         data,
         labels,
         batch_size=batch_size,
-        callbacks=[callback],
+        callbacks=callbacks,
         epochs=epochs,
         validation_data=validation_data,
         shuffle=shuffle,
