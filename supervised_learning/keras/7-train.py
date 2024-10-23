@@ -5,6 +5,7 @@ import tensorflow.keras as K
 
 def train_model(network, data, labels, batch_size, epochs,
                 validation_data=None, early_stopping=False, patience=0,
+                learning_rate_decay=False, alpha=0.1, decay_rate=1,
                 verbose=True, shuffle=False):
     """ that trains a model using mini-batch gradient descent:
     args:
@@ -25,6 +26,16 @@ def train_model(network, data, labels, batch_size, epochs,
             early stopping should be based on validation loss
 
         patience: patience used for early stopping
+
+        learning_rate_decay: bool tht indic8s if learnin r8 decay shld b used
+            learning rate decay shld only b performed if val_data exists
+            the decay should be performed using inverse time decay
+            the learning r8 shld decay in a stepwise fashion after ea epoch
+            each time the learning rate updates, Keras shld print a message
+
+        alpha: initial learning rate
+
+        decay_rate: decay rate
 
         verbose: boolean determines if output shld be printed during training
 
