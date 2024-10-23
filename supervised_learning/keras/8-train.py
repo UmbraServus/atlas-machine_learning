@@ -70,6 +70,11 @@ def train_model(network, data, labels, batch_size, epochs,
             K.callbacks.LearningRateScheduler(lr_schedule, verbose=1)
             )
 
+    callbacks.append(K.callbacks.ModelCheckpoint(
+        filepath=filepath,
+        save_best_only=save_best
+    ))
+
     optimizer = K.optimizers.Adam(learning_rate=alpha)
     model.compile(
         optimizer=optimizer,

@@ -2,3 +2,4 @@
 main.py
 *.h5
 *Zone.Identifier
+network1.keras
