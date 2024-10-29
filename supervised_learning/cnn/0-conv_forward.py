@@ -2,6 +2,7 @@
 """module for conv forward prop"""
 import numpy as np
 
+
 def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     """ performs fwd prop over a convolutional layer of a neural network
 args:
@@ -48,7 +49,7 @@ Returns: the output of the convolutional layer"""
             w_end = w_start + kw
             for k in range(c_new):
                 current_slice = A_prev_pad[:, h_start:h_end,
-                                           w_start:w_end, : ]
+                                           w_start:w_end, :]
                 output[:, h, w, k] = np.sum(
                     current_slice * W[..., k], axis=(1, 2, 3)) + b[..., k]
     output = activation(output)
