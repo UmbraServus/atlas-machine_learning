@@ -27,8 +27,8 @@ Returns: the output of the convolutional layer"""
     sh, sw = stride
 
     if padding == "same":
-        pad_h = ((h_prev - 1) * sh + kh - h_prev + 1)
-        pad_w = ((w_prev - 1) * sh + kh - w_prev + 1)
+        pad_h = ((h_prev - 1) * sh + kh - h_prev + 1) // 2
+        pad_w = ((w_prev - 1) * sh + kh - w_prev + 1) // 2
 
     elif padding == "valid":
         pad_h = 0
@@ -51,5 +51,5 @@ Returns: the output of the convolutional layer"""
                                            w_start:w_end, : ]
                 output[:, h, w, k] = np.sum(
                     current_slice * W[..., k], axis=(1, 2, 3)) + b[..., k]
-                output = activation(output)
+    output = activation(output)
     return output
