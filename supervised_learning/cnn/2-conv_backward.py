@@ -4,7 +4,7 @@ import numpy as np
 
 
 def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
-    """performs back propagation over a convolutional layer of a neural network:
+    """performs back prop. over a convolutional layer of a neural network
 args:
     dZ: np.ndarr shape (m, h_new, w_new, c_new) containin the partial
         derivatives w/ respect to the unactvted output of the conv layer
@@ -27,47 +27,49 @@ args:
         sw is the stride for the width
 Returns: partial derivatives w/ respect to the previous layer (dA_prev), the
     kernels (dW), and the biases (db), respectively"""
-    dW = np.zeros_like(W)
-    db = np.zeros_like(b)
+
     m, h_new, w_new, c_new = dZ.shape
     m, h_prev, w_prev, c_prev = A_prev.shape
     sh, sw = stride
-    kh, kw, _, _ = W
+    kh, kw, _, _ = W.shape
 
     if padding == 'same':
         pad_h = ((h_prev - 1) * sh + kh - h_prev + 1) // 2
         pad_w = ((w_prev - 1) * sw + kh - w_prev + 1) // 2
-    
-    if padding == 'valid'
+
+    if padding == 'valid':
         pad_h = 0
         pad_w = 0
-    
+
+    dW = np.zeros_like(W)
+    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
+
     A_prev_pad = np.pad(A_prev, ((0, 0), (pad_h, pad_h),
                                     (pad_w, pad_w), (0, 0)), mode='constant')
     dA_prev = np.zeros_like(A_prev_pad)
 
-    for h in range(h_new):
-        for w in range(w_new):
-            h_start = h * sh
-            w_start = w * sw
-            h_end = h_start + kh
-            w_end = w_start + kw
-            for k in range(c_new):
-                current_slice = A_prev_pad[:, h_start:h_end,
-                                           w_start:w_end, :]
-                dW[..., k] += np.sum(
-                    current_slice * dZ[..., k+1], axis=0)
-                db[..., k] += np.sum(
-                    dZ[:, h, w, k+1], axis=0
-                )
+    for i in range(m):
+        for h in range(h_new):
+            for w in range(w_new):
+                h_start = h * sh
+                w_start = w * sw
+                h_end = h_start + kh
+                w_end = w_start + kw
+                for k in range(c_new):
+                    current_slice = A_prev_pad[i,
+                                               h_start:h_end,
+                                               w_start:w_end,
+                                               :]
+                    dW[:, :, :, k] += current_slice * dZ[i, h, w, k]
+                    dA_prev[i,
+                            h_start:h_end,
+                            w_start:w_end,
+                            :] += W[:, :, :, k] * dZ[i, h, w, k]
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if padding == 'same':
+        dA_prev = dA_prev[:, pad_h:-pad_h, pad_w:-pad_w, :]
+
+    elif padding == 'valid':
+        dA_prev = dA_prev[:, :h_prev, :w_prev, :]
+
     return dA_prev, dW, db
