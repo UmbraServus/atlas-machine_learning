@@ -39,12 +39,21 @@ Returns: the partial derivatives with respect to the previous layer (dA_prev)
                     start_w = w * sw
                     end_h = start_h + kh
                     end_w = start_w + kw
-                    current_slice = A_prev[i, start_h:end_h, start_w:end_w, k]
+                    current_slice = A_prev[i,
+                                           start_h:end_h,
+                                           start_w:end_w,
+                                           k]
 
                     if mode == 'max':
                         mask = (current_slice == np.max(current_slice))
-                        dA_prev[i, start_h:end_h, start_w:end_w, k] += mask * dA[i, h, w, k]
+                        dA_prev[i,
+                                start_h:end_h,
+                                start_w:end_w,
+                                k] += mask * dA[i, h, w, k]
                     elif mode == 'avg':
                         avg_dA = dA[i, h, w, k] / (kh * kw)
-                        dA_prev[i, start_h:end_h, start_w:end_w, k] += np.ones((kh, kw)) * avg_dA
+                        dA_prev[i,
+                                start_h:end_h,
+                                start_w:end_w,
+                                k] += np.ones((kh, kw)) * avg_dA
         return dA_prev
