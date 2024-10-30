@@ -20,7 +20,7 @@ The model should consist of the following layers in order:
     Fully connected softmax output layer with 10 nodes
 
 All layers requiring initialization should initialize their kernels with
-the he_normal initialization 
+the he_normal initialization
 method: tf.keras.initializers.VarianceScaling(scale=2.0)
 
 All hidden layers requiring activation should use the relu activation
