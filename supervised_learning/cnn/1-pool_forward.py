@@ -36,6 +36,6 @@ Returns: the output of the pooling layer """
             current_slice = A_prev[:, start_h:end_h, start_w:end_w, :]
             if mode == 'max':
                 output[:, h, w, :] = np.max(current_slice, axis=(1, 2))
-            elif mode == 'average':
+            elif mode == 'avg':
                 output[:, h, w, :] = np.mean(current_slice, axis=(1, 2))
     return output
