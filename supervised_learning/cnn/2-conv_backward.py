@@ -46,10 +46,10 @@ Returns: partial derivatives w/ respect to the previous layer (dA_prev), the
 
     A_prev_pad = np.pad(A_prev,
                         ((0, 0),
-                         (pad_h, pad_h),
-                         (pad_w, pad_w),
-                         (0, 0)),
-                         mode='constant')
+                        (pad_h, pad_h),
+                        (pad_w, pad_w),
+                        (0, 0)),
+                        mode='constant')
     dA_prev = np.zeros_like(A_prev_pad)
 
     for i in range(m):
