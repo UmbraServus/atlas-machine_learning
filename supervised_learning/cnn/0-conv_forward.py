@@ -29,7 +29,7 @@ Returns: the output of the convolutional layer"""
 
     if padding == "same":
         pad_h = ((h_prev - 1) * sh + kh - h_prev + 1) // 2
-        pad_w = ((w_prev - 1) * sh + kh - w_prev + 1) // 2
+        pad_w = ((w_prev - 1) * sw + kh - w_prev + 1) // 2
 
     elif padding == "valid":
         pad_h = 0
