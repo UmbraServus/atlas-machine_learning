@@ -37,5 +37,5 @@ Returns: the output of the pooling layer """
             if mode == 'max':
                 output[:, h, w, :] = np.max(current_slice, axis=(1, 2))
             elif mode == 'average':
-                output[:, h, w, :] = np.mean(current_slice, axis=(1, 2))    
+                output[:, h, w, :] = np.mean(current_slice, axis=(1, 2))
     return output
