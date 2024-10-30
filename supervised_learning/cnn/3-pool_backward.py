@@ -56,4 +56,4 @@ Returns: the partial derivatives with respect to the previous layer (dA_prev)
                                 start_h:end_h,
                                 start_w:end_w,
                                 k] += np.ones((kh, kw)) * avg_dA
-        return dA_prev
+    return dA_prev
