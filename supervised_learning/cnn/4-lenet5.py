@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """module for lenet5 using v1 tensorflow"""
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
 
 def lenet5(x, y):
@@ -31,3 +31,49 @@ tensor for the softmax activated output
 training op that utilizes Adam opt (with default hyperparameters)
 tensor for the loss of the netowrk
 tensor for the accuracy of the network"""
+    Relu = tf.compat.v1.nn.relu
+    initializer = tf.keras.initializers.VarianceScaling(scale=2.0)
+
+    conv1 = tf.compat.v1.layers.Conv2D(x,
+                                       filters=6,
+                                       kernel_size=5,
+                                       padding='same',
+                                       activation=Relu
+                                       kernel_initializer=initializer)
+
+    pool1 = tf.compat.v1.layers.MaxPooling2D(conv1, pool_size=2, strides=2)
+
+    conv2 = tf.compat.v1.layers.Conv2D(pool1,
+                                       filters=16,
+                                       kernel_size=5,
+                                       padding='valid',
+                                       activation=Relu
+                                       kernel_initializer=initializer)
+
+    pool2 = tf.compat.v1.layers.MaxPooling2D(conv2, pool_size=2, strides=2)
+    flatten = tf.compat.v1.layers.flatten(pool2)
+
+    fc1 = tf.compat.v1.layers.Dense(flatten,
+                                    units=120,
+                                    kernel_initializer=initializer,
+                                    activation=Relu)
+    fc2 = tf.compat.v1.layers.Dense(fc1,
+                                    units=84,
+                                    kernel_initializer=initializer,
+                                    activation=Relu)
+    logits = tf.compat.v1.layers.Dense(fc2,
+                                       units=10,
+                                       kernel_initializer=initializer)
+
+    output = tf.compat.v1.nn.softmax(logits)
+    loss = tf.compat.v1.reduce_mean(
+        tf.compat.v1.nn.softmax_cross_entropy_with_logits_v2(labels=y,
+                                                             logits=logits)
+                                                             ) 
+    optimizer = tf.compat.v1.train.AdamOptimizer()
+    train_op = optimizer.minimize(loss)
+    correct_pred = tf.compat.v1.equal(tf.compat.v1.argmax(logits,1),
+                                      tf.compat.v1.argmax(y, 1))
+    acc = tf.compat.v1.reduce_mean(tf.compat.v1.cast(correct_pred,
+                                                     tf.compat.v1.float32))
+    return output, train_op, loss, acc
