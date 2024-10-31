@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """module for lenet5 using keras"""
-from tensorflow import keras as K
+import tensorflow.keras as K
 
 
 def lenet5(X):
@@ -26,3 +26,37 @@ to ensure reproducibility.
 All hidden lyrs requiring activation should use the relu activation function
 Returns: K.Model compiled 2 use Adam opt. (w/ def. hyperparas) & acc. metrics
 """
+    initializer = K.initializers.he_normal(seed=0)
+    
+    conv1 = K.layers.Conv2D(filters=6,
+                            kernel_size=5,
+                            padding='same',
+                            activation='relu',
+                            kernel_initializer=initializer)(X)
+
+    pool1 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv1)
+
+    conv2 = K.layers.Conv2D(filters=16,
+                             kernel_size=5,
+                             padding='valid',
+                             activation='relu',
+                             kernel_initializer=initializer)(pool1)
+
+    pool2 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv2)
+    flatten = K.layers.Flatten()(pool2)
+
+    fc1 = K.layers.Dense(units=120,
+                         kernel_initializer=initializer,
+                         activation='relu')(flatten)
+    fc2 = K.layers.Dense(units=84,
+                         kernel_initializer=initializer,
+                         activation='relu')(fc1)
+    outputs = K.layers.Dense(units=10,
+                            activation='softmax',
+                            kernel_initializer=initializer)(fc2)
+
+    model = K.Model(inputs=X, outputs=outputs)
+    model.compile(optimizer='adam',
+                  loss='categorical_crossentropy',
+                  metrics=['accuracy'])
+    return model
