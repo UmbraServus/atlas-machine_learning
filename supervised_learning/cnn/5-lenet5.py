@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """module for lenet5 using keras"""
-import tensorflow.keras as K
+from tensorflow import keras as K
 
 
 def lenet5(X):
