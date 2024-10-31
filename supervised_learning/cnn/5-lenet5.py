@@ -37,10 +37,10 @@ Returns: K.Model compiled 2 use Adam opt. (w/ def. hyperparas) & acc. metrics
     pool1 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv1)
 
     conv2 = K.layers.Conv2D(filters=16,
-                             kernel_size=5,
-                             padding='valid',
-                             activation='relu',
-                             kernel_initializer=initializer)(pool1)
+                            kernel_size=5,
+                            padding='valid',
+                            activation='relu',
+                            kernel_initializer=initializer)(pool1)
 
     pool2 = K.layers.MaxPooling2D(pool_size=2, strides=2)(conv2)
     flatten = K.layers.Flatten()(pool2)
@@ -52,8 +52,8 @@ Returns: K.Model compiled 2 use Adam opt. (w/ def. hyperparas) & acc. metrics
                          kernel_initializer=initializer,
                          activation='relu')(fc1)
     outputs = K.layers.Dense(units=10,
-                            activation='softmax',
-                            kernel_initializer=initializer)(fc2)
+                             activation='softmax',
+                             kernel_initializer=initializer)(fc2)
 
     model = K.Model(inputs=X, outputs=outputs)
     model.compile(optimizer='adam',
