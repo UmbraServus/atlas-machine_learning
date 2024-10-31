@@ -4,7 +4,6 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 
 
-
 def lenet5(x, y):
     """ builds a mod ver of the LeNet-5 architecture using tensorflow
 args:
@@ -73,6 +72,6 @@ tensor for the accuracy of the network"""
         )
     optimizer = tf.train.AdamOptimizer()
     train_op = optimizer.minimize(loss)
-    correct_pred = tf.equal(tf.argmax(logits,1), tf.argmax(y, 1))
+    correct_pred = tf.equal(tf.argmax(logits, 1), tf.argmax(y, 1))
     acc = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
     return output, train_op, loss, acc
