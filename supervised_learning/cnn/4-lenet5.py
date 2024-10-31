@@ -70,7 +70,7 @@ tensor for the accuracy of the network"""
     output = tf.nn.softmax(logits)
     loss = tf.reduce_mean(
         tf.nn.softmax_cross_entropy_with_logits_v2(labels=y, logits=logits)
-        ) 
+        )
     optimizer = tf.train.AdamOptimizer()
     train_op = optimizer.minimize(loss)
     correct_pred = tf.equal(tf.argmax(logits,1), tf.argmax(y, 1))
