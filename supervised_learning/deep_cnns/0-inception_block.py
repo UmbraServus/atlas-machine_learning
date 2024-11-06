@@ -2,6 +2,7 @@
 """ module that builds an inception block"""
 from tensorflow import keras as K
 
+
 def inception_block(A_prev, filters): 
     """method that builds an inception block
     args:
@@ -12,7 +13,7 @@ def inception_block(A_prev, filters):
             F3 number of filters in the 3x3 convolution
             F5R number of filters in the 1x1 conv. before the 5x5 convolution
             F5 number of filters in the 5x5 convolution
-            FPP number of filters in the 1x1 convolution after the max pooling
+            FPP number of filters in the 1x1 convolution aftr the max pooling
     All convolutions inside the inception block should use
     rectified linear activation (ReLU)
 Returns: the concatenated output of the inception block """
