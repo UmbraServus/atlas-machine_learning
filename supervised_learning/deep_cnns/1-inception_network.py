@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""module for building inception network based on Going Deeper with Convolutions (2014)"""
+"""module for building inception network based on 
+Going Deeper with Convolutions (2014)"""
 from tensorflow import keras as K
 inception_block = __import__('0-inception_block').inception_block
 
+
 def inception_network():
-    """builds the inception network as described in Going Deeper with Convolutions (2014):
-    
+    """builds the inception network as described in
+      Going Deeper with Convolutions (2014)
+
     You can assume the input data will have shape (224, 224, 3)
     All convolutions inside and outside the inception block should use (ReLU)
 Returns: the keras model"""
@@ -44,13 +47,23 @@ Returns: the keras model"""
     inception_4b = inception_block(inception_4a, [160, 112, 224, 24, 64, 64])
     inception_4c = inception_block(inception_4b, [128, 128, 256, 24, 64, 64])
     inception_4d = inception_block(inception_4c, [112, 144, 288, 32, 64, 64])
-    inception_4e = inception_block(inception_4d, [256, 160, 320, 32, 128, 128])
+    inception_4e = inception_block(inception_4d, [256,
+                                                  160,
+                                                  320,
+                                                  32,
+                                                  128,
+                                                  128])
     max_pool_4 = K.layers.MaxPooling2D(pool_size=3,
                                        strides=2,
                                        padding='same')(inception_4e)
 
     inception_5a = inception_block(max_pool_4, [256, 160, 320, 32, 128, 128])
-    inception_5b = inception_block(inception_5a, [384, 192, 384, 48, 128, 128])
+    inception_5b = inception_block(inception_5a, [384,
+                                                  192,
+                                                  384,
+                                                  48,
+                                                  128,
+                                                  128])
     avg_pool_1 = K.layers.AveragePooling2D(pool_size=7)(inception_5b)
 
     dropout_layer = K.layers.Dropout(0.4)(avg_pool_1)
