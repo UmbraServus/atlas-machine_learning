@@ -15,8 +15,8 @@ args:
         as the 1x1 convolution in the shortcut connection
     s: stride of the 1st convolution in both the main path and the shortcut
 
-    All convolutions inside the block should be followed by batch normalization
-along the channels axis and a rectified linear activation (ReLU), respectively.
+    All convolutions inside the blck should b followed by batch normalization
+along the channels axis and a rectified linear activation ReLU, respectively
     All weights should use he normal initialization
 The seed for the he_normal initializer should be set to zero
 
