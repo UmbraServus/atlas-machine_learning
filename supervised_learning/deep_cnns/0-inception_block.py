@@ -3,7 +3,7 @@
 from tensorflow import keras as K
 
 
-def inception_block(A_prev, filters): 
+def inception_block(A_prev, filters):
     """method that builds an inception block
     args:
         A_prev: output from the previous layer
@@ -30,7 +30,7 @@ Returns: the concatenated output of the inception block """
     branch_2 = K.layers.Conv2D(filters=F3,
                                kernel_size=3,
                                activation='relu',
-                        padding='same')(branch_2)
+                               padding='same')(branch_2)
 
     branch_3 = K.layers.Conv2D(filters=F5R,
                                kernel_size=1,

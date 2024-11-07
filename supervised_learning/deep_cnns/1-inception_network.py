@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""module for building inception network based on 
+"""module for building inception network based on
 Going Deeper with Convolutions (2014)"""
 from tensorflow import keras as K
 inception_block = __import__('0-inception_block').inception_block
@@ -29,10 +29,10 @@ Returns: the keras model"""
                              strides=1,
                              activation='relu')(max_pool_1)
     conv_2b = K.layers.Conv2D(filters=192,
-                             kernel_size=3,
-                             strides=1,
-                             activation='relu',
-                             padding='same')(conv_2)
+                              kernel_size=3,
+                              strides=1,
+                              activation='relu',
+                              padding='same')(conv_2)
     max_pool_2 = K.layers.MaxPooling2D(pool_size=3,
                                        strides=2,
                                        padding='same')(conv_2b)
