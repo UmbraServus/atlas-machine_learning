@@ -36,7 +36,7 @@ class Yolo():
             raise TypeError("anchors must be a np.ndarray")
         self.anchors = anchors
 
-    def sigmoid(x):
+    def sigmoid(self, x):
         """sigmoid function """
         return 1 / (1 + np.exp(-x))
 
@@ -60,21 +60,29 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
     box_class_probs: list, ndarr shape (grid_h, grid_w, anchor_boxes, classes)
     """
 
-        boxes = []
+        boxes = [output[..., :4] for output in outputs]
         box_confidences = []
         box_class_probs = []
         image_h, image_w = image_size[:2]
 
         for idx, output in enumerate(outputs):
-            t_x, t_y, t_w, t_h = output[..., :4]
+            t_x = output[..., 0]
+            t_y = output[..., 1]
+            t_w = output[..., 2]
+            t_h = output[..., 3]
             grid_h, grid_w, num_anchors, _ = output.shape
             box_confidence = output[..., 4:5]
             class_prob = output[..., 5:]
             
-            box_confidences = self.sigmoid(box_confidence)
-            box_class_probs = self.sigmoid(class_prob)
+            box_conf = self.sigmoid(box_confidence)
+            box_class_p = self.sigmoid(class_prob)
             
+            box_confidences.append(box_conf)
+            box_class_probs.append(box_class_p)
+
             i, j = np.indices((grid_h, grid_w))
+            i = i[..., np.newaxis]
+            j = j[..., np.newaxis]
             grid_x = (j + self.sigmoid(t_x)) / grid_w
             grid_y = (i + self.sigmoid(t_y)) / grid_h
             
@@ -88,10 +96,12 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             x1 = x_center - (width / 2)
             x2 = x_center + (width / 2)
             y1 = y_center - (height / 2)
-            y2 = y_center - (height / 2)
+            y2 = y_center + (height / 2)
 
-            
+            boxes.append(np.stack([x1, y1, x2, y2], axis=-1))
 
-            box_confidences.append(box_confidences)
-            box_class_probs.append(box_class_probs)
+
+        boxes = np.array(boxes)
+        box_confidences = np.array(box_confidences)
+        box_class_probs = np.array(box_class_probs)
         return boxes, box_confidences, box_class_probs
