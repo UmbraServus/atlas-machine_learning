@@ -100,8 +100,4 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
 
             boxes.append(np.stack([x1, y1, x2, y2], axis=-1))
 
-
-        boxes = np.array(boxes)
-        box_confidences = np.array(box_confidences)
-        box_class_probs = np.array(box_class_probs)
         return boxes, box_confidences, box_class_probs
