@@ -102,11 +102,38 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
 
 
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
-""" 
-boxes: a list of numpy.ndarrays of shape (grid_height, grid_width, anchor_boxes, 4) containing the processed boundary boxes for each output, respectively
-box_confidences: a list of numpy.ndarrays of shape (grid_height, grid_width, anchor_boxes, 1) containing the processed box confidences for each output, respectively
-box_class_probs: a list of numpy.ndarrays of shape (grid_height, grid_width, anchor_boxes, classes) containing the processed box class probabilities for each output, respectively
-Returns a tuple of (filtered_boxes, box_classes, box_scores):
-filtered_boxes: a numpy.ndarray of shape (?, 4) containing all of the filtered bounding boxes:
-box_classes: a numpy.ndarray of shape (?,) containing the class number that each box in filtered_boxes predicts, respectively
-box_scores: a numpy.ndarray of shape (?) containing the box scores for each box in filtered_boxes, respectively """
+        """
+args:
+boxes: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 4) 
+containing processed boundary boxes for each output
+    
+box_confidences: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 1) 
+containing processed box confidences for each output
+
+box_class_probs: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, classes) 
+containing processed box class probabilities for each output
+
+Returns: (filtered_boxes, box_classes, box_scores):
+filtered_boxes: np.ndarr of shape (?, 4) w/ all filtered bounding boxes
+box_classes: np.ndarr of shape (?,) w/ class num for each filtered box
+box_scores: np.ndarr of shape (?) w/ scores for each filtered box
+"""
+        filtered_boxes = []
+        box_classes = []
+        box_scores = []
+
+        for (box, conf, class_probs) in zip(boxes, box_confidences, box_class_probs):
+
+            box_scores_ = conf * class_probs
+            box_classes_ = np.argmax(box_scores_, axis=-1)
+            max_scores = np.max(box_scores_, axis=-1)
+            filter_mask = max_scores >= 0.5
+            filtered_boxes.append(box[filter_mask])
+            box_classes.append(box_classes_[filter_mask])
+            box_scores.append(max_scores[filter_mask])
+
+        filtered_boxes = np.concatenate(filtered_boxes, axis=0)
+        box_classes = np.concatenate(box_classes, axis=0)
+        box_scores = np.concatenate(box_scores, axis=0)
+
+        return filtered_boxes, box_classes, box_scores
