@@ -59,11 +59,10 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
     box_confidences: list, np.ndarr shape (grid_h, grid_w, anchor_boxes, 1)
     box_class_probs: list, ndarr shape (grid_h, grid_w, anchor_boxes, classes)
     """
-
         boxes = []
         box_confidences = []
         box_class_probs = []
-        image_h, image_w = image_size[:2]
+        image_h, image_w = image_size
 
         for idx, output in enumerate(outputs):
             t_x = output[..., 0]
@@ -73,18 +72,18 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             grid_h, grid_w = output.shape[:2]
             box_confidence = output[..., 4:5]
             class_prob = output[..., 5:]
-            
+
             box_conf = self.sigmoid(box_confidence)
             box_class_p = self.sigmoid(class_prob)
-            
+
             box_confidences.append(box_conf)
             box_class_probs.append(box_class_p)
 
             i, j = np.indices((grid_h, grid_w))
             i = i[..., np.newaxis]
             j = j[..., np.newaxis]
-            grid_x = (j + self.sigmoid(t_x)) / grid_w
-            grid_y = (i + self.sigmoid(t_y)) / grid_h
+            grid_x = ((self.sigmoid(t_x)) + j) / grid_w
+            grid_y = ((self.sigmoid(t_y)) + i) / grid_h
             
             anchor_w = self.anchors[idx, :, 0]
             anchor_h =self.anchors[idx, :, 1]
