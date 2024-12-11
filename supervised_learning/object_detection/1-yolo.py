@@ -60,7 +60,7 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
     box_class_probs: list, ndarr shape (grid_h, grid_w, anchor_boxes, classes)
     """
 
-        boxes = [output[..., :4] for output in outputs]
+        boxes = []
         box_confidences = []
         box_class_probs = []
         image_h, image_w = image_size[:2]
