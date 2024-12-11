@@ -5,7 +5,6 @@ import tensorflow as tf
 from keras import models
 
 
-
 class Yolo():
     """ class for using Yolov3 to perform obj detection"""
 
@@ -87,15 +86,15 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             
             anchor_w = self.anchors[idx, :, 0]
             anchor_h =self.anchors[idx, :, 1]
-            width = np.exp(t_w) * anchor_w / self.model.input.shape[1]
-            height = np.exp(t_h) * anchor_h / self.model.input.shape[2]
+            box_width = np.exp(t_w) * anchor_w / self.model.input.shape[1]
+            box_height = np.exp(t_h) * anchor_h / self.model.input.shape[2]
 
             x_center = grid_x * image_w
             y_center = grid_y * image_h
-            x1 = x_center - (width / 2)
-            x2 = x_center + (width / 2)
-            y1 = y_center - (height / 2)
-            y2 = y_center + (height / 2)
+            x1 = x_center - (box_width * image_w / 2)
+            x2 = x_center + (box_width * image_w / 2)
+            y1 = y_center - (box_height * image_h / 2)
+            y2 = y_center + (box_height * image_h / 2)
 
             boxes.append(np.stack([x1, y1, x2, y2], axis=-1))
 
