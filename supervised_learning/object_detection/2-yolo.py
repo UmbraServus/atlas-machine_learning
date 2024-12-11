@@ -106,11 +106,11 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
 args:
 boxes: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 4) 
 containing processed boundary boxes for each output
-    
-box_confidences: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 1) 
+
+box_confidences: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 1)
 containing processed box confidences for each output
 
-box_class_probs: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, classes) 
+box_class_probs: list np.ndarr, shape (grid_h, grid_w, anchor_boxes, classes)
 containing processed box class probabilities for each output
 
 Returns: (filtered_boxes, box_classes, box_scores):
@@ -122,13 +122,13 @@ box_scores: np.ndarr of shape (?) w/ scores for each filtered box
         box_classes = []
         box_scores = []
 
-        for (box, conf, class_probs) in zip(boxes, box_confidences, box_class_probs):
+        for (b, conf, clsP) in zip(boxes, box_confidences, box_class_probs):
 
-            box_scores_ = conf * class_probs
+            box_scores_ = conf * clsP
             box_classes_ = np.argmax(box_scores_, axis=-1)
             max_scores = np.max(box_scores_, axis=-1)
             filter_mask = max_scores >= self.class_t
-            filtered_boxes.append(box[filter_mask])
+            filtered_boxes.append(b[filter_mask])
             box_classes.append(box_classes_[filter_mask])
             box_scores.append(max_scores[filter_mask])
 
