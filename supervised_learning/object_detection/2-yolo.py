@@ -127,7 +127,7 @@ box_scores: np.ndarr of shape (?) w/ scores for each filtered box
             box_scores_ = conf * class_probs
             box_classes_ = np.argmax(box_scores_, axis=-1)
             max_scores = np.max(box_scores_, axis=-1)
-            filter_mask = max_scores >= 0.5
+            filter_mask = max_scores >= self.class_t
             filtered_boxes.append(box[filter_mask])
             box_classes.append(box_classes_[filter_mask])
             box_scores.append(max_scores[filter_mask])
