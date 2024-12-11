@@ -100,11 +100,10 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
 
         return boxes, box_confidences, box_class_probs
 
-
     def filter_boxes(self, boxes, box_confidences, box_class_probs):
         """
-args:
-boxes: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 4) 
+    args:
+boxes: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 4)
 containing processed boundary boxes for each output
 
 box_confidences: list of np.ndarr of shape (grid_h, grid_w, anchor_boxes, 1)
