@@ -50,7 +50,7 @@ args:
         1 => box_confidence
         classes => class probabilities for all classes
     image_size is a np.ndarr containing image's orig. size [image_h, image_w]
-    
+
 Returns: tuple of (boxes, box_confidences, box_class_probs):
     boxes: list, np.ndarr shape (grid_h, grid_w, anchor_boxes, 4)
         4 => (x1, y1, x2, y2)
@@ -83,9 +83,9 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             j = j[..., np.newaxis]
             grid_x = ((self.sigmoid(t_x)) + j) / grid_w
             grid_y = ((self.sigmoid(t_y)) + i) / grid_h
-            
+
             anchor_w = self.anchors[idx, :, 0]
-            anchor_h =self.anchors[idx, :, 1]
+            anchor_h = self.anchors[idx, :, 1]
             box_width = np.exp(t_w) * anchor_w / self.model.input.shape[1]
             box_height = np.exp(t_h) * anchor_h / self.model.input.shape[2]
 
