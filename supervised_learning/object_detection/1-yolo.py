@@ -70,7 +70,7 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             t_y = output[..., 1]
             t_w = output[..., 2]
             t_h = output[..., 3]
-            grid_h, grid_w, num_anchors, _ = output.shape
+            grid_h, grid_w = output.shape[:2]
             box_confidence = output[..., 4:5]
             class_prob = output[..., 5:]
             
@@ -88,8 +88,8 @@ Returns: tuple of (boxes, box_confidences, box_class_probs):
             
             anchor_w = self.anchors[idx, :, 0]
             anchor_h =self.anchors[idx, :, 1]
-            width = np.exp(t_w) * anchor_w / image_w
-            height = np.exp(t_h) * anchor_h / image_h
+            width = np.exp(t_w) * anchor_w / self.model.input.shape[1]
+            height = np.exp(t_h) * anchor_h / self.model.input.shape[2]
 
             x_center = grid_x * image_w
             y_center = grid_y * image_h
