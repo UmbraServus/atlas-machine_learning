@@ -142,23 +142,23 @@ box_scores: np.ndarr of shape (?) w/ scores for each filtered box
         """
 args:
 
-filtered_boxes: np.ndarray of shape (?, 4) containing all filtered bounding boxes
+filtered_boxes: np.ndarr of shape (?, 4) containin all filtered boundin bxes
 
-box_classes: np.ndarray of shape (?,) containing class num for filtered_boxes
+box_classes: np.ndarr of shape (?,) containing class num for filtered_boxes
 
-box_scores: np.ndarray of shape (?) containing scores for each filtered box
+box_scores: np.ndarr of shape (?) containing scores for each filtered box
 
 Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
-    box_predictions: np.ndarray of shape (?, 4) containing predicted bounding boxes 
+    box_predictions: np.arr of shape (?, 4) containin predicted boundin bxes
     ordered by class and score
 
-    predicted_box_classes: np.ndarray of shape (?,) containing class num for 
+    predicted_box_classes: np.ndarray of shape (?,) containing class num for
     box_predictions ordered by class and score
-    
-    predicted_box_scores: np.ndarray of shape (?) containing scores for 
+
+    predicted_box_scores: np.ndarray of shape (?) containing scores for
     box_predictions ordered by class and score
     """
-        # Initialize empty lists to store final selected boxes, classes, and scores
+        # Init empty lists to store final selected boxes, classes, and scores
         box_predictions = []
         predicted_box_classes = []
         predicted_box_scores = []
@@ -193,7 +193,9 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
         # Re-sort the remaining boxes by score (descending)
 
         # Return the final selected boxes, classes, and scores
-        return (np.array(box_predictions), np.array(predicted_box_classes), np.array(predicted_box_scores))
+        return (np.array(box_predictions),
+                np.array(predicted_box_classes),
+                np.array(predicted_box_scores))
 
     def calc_iou(self, current_box, remaining_boxes):
         """calculates iou
