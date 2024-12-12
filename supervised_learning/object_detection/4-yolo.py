@@ -224,6 +224,43 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
 
         return IoU
 
+    def preprocess_images(self, images):
+        """ 
+args:
+    images: a list of images as numpy.ndarrays
+        Resize the images with inter-cubic interpolation
+        Rescale all images to have pixel values in the range [0, 1]
+
+Returns a tuple of (pimages, image_shapes):
+   
+    pimages: a numpy.ndarray of shape (ni, input_h, input_w, 3) 
+    containing all of the preprocessed images
+        ni: the number of images that were preprocessed
+        input_h: input height for Darknet model Note: this can vary by model
+        input_w: input width for Darknet model Note: this can vary by model
+        3: number of color channels 
+
+    image_shapes: a numpy.ndarray of shape (ni, 2)
+    containing the original height and width of the images
+        2 => (image_height, image_width)"""
+
+        pimages = []
+        image_shapes = []
+        for image in images:
+            original_h, original_w, _ = image.shape
+            image_shapes.append((original_h, original_w))
+            input = self.model.input
+            input_h, input_w = input.shape[1:3]
+            resized_image = cv2.resize(image, (input_h, input_w), interpolation='INTER_CUBIC' )
+            normalized_image = resized_image / 255.0
+            pimages.append(normalized_image)
+
+        pimages = np.array(pimages)
+        image_shapes = np.array(image_shapes)
+
+        return pimages, image_shapes
+
+
     @staticmethod
     def load_images(folder_path):
         """
