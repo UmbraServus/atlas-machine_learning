@@ -6,6 +6,7 @@ from keras import models
 import os
 import cv2
 
+
 class Yolo():
     """ class for using Yolov3 to perform obj detection"""
 

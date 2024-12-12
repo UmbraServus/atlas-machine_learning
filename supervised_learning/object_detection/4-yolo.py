@@ -6,6 +6,7 @@ from keras import models
 import os
 import cv2
 
+
 class Yolo():
     """ class for using Yolov3 to perform obj detection"""
 
@@ -168,8 +169,8 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
 
         # Iterate through sorted indices and apply NMS
         while len(sorted_idxs) > 0:
-        
-        # Get the current box's class and score using sorted indices
+
+        #Get the current box's class and score using sorted indices
             curr_idx = sorted_idxs[0]
             current_box = filtered_boxes[curr_idx]
             current_class = box_classes[curr_idx]
@@ -216,7 +217,7 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
             * (current_box[1] - current_box[3])
         remaining_box_area = (remaining_boxes[:, 0] - remaining_boxes[:, 2]) \
             * (remaining_boxes[:, 1] - remaining_boxes[:, 3])
-        
+
         union_area = curr_box_area + remaining_box_area - intersection
 
         IoU = intersection / union_area
@@ -233,7 +234,7 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
         images: a list of images as numpy.ndarrays
         image_paths: a list of paths to the individual images in images """
 
-         # initializing lists
+        #initializing lists
         images = []
         image_paths = []
 
