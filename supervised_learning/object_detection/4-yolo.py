@@ -222,7 +222,7 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
         return IoU
     
 
-     def load_images(folder_path):
+    def load_images(folder_path):
         """
     args:
     folder_path: a string representing the path to the folder holding all the images to load
