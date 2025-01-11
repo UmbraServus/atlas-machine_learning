@@ -159,44 +159,39 @@ Returns tuple (box_predictions, predicted_box_classes, predicted_box_scores):
     predicted_box_scores: np.ndarray of shape (?) containing scores for
     box_predictions ordered by class and score
     """
-        # Init empty lists to store final selected boxes, classes, and scores
-        box_predictions = []
-        predicted_box_classes = []
-        predicted_box_scores = []
 
         # Sort boxes by class and then by score (in descending order)
         sorted_idxs = np.lexsort(((-box_scores), box_classes))
-
-        # Iterate through sorted indices and apply NMS
-        while len(sorted_idxs) > 0:
+        curr_idx = []
 
         #Get the current box's class and score using sorted indices
-            curr_idx = sorted_idxs[0]
-            current_box = filtered_boxes[curr_idx]
-            current_class = box_classes[curr_idx]
-            current_score = box_scores[curr_idx]
+        box_predictions = filtered_boxes[sorted_idxs]
+        predicted_box_classes = box_classes[sorted_idxs]
+        predicted_box_scores = box_scores[sorted_idxs]
 
-        # Add the current box, class, and score to the selected lists
-            box_predictions.append(current_box)
-            predicted_box_classes.append(current_class)
-            predicted_box_scores.append(current_score)
+        unique_classes = np.unique(predicted_box_classes)
 
-        # Remove the current box from further consideration
-            remaining_boxes = filtered_boxes[sorted_idxs[1:]]
-        # Calculate IoU between the current box and remaining boxes
-            iou = self.calc_iou(current_box, remaining_boxes)
-        # Find indices of boxes with IoU <= threshold
-            mask = np.where(iou <= self.nms_t)
-            sorted_idxs = sorted_idxs[1:][mask]
+        for cls in unique_classes:
+            cls_mask = predicted_box_classes == cls
+            cls_idx = np.where(cls_mask)[0]
 
-        # Update boxes, scores, and classes based on IoU
+            while len(cls_idx) > 0:
+                curr_idx.append(cls_idx[0])
+                
+                if len(cls_idx) == 1:
+                    break
 
-        # Re-sort the remaining boxes by score (descending)
+                current_box = box_predictions[cls_idx[0]]
+                remaining_boxes = box_predictions[cls_idx[1:]]
+                IoU = self.calc_iou(current_box, remaining_boxes)
 
-        # Return the final selected boxes, classes, and scores
-        return (np.array(box_predictions),
-                np.array(predicted_box_classes),
-                np.array(predicted_box_scores))
+                cls_idx = cls_idx[1:][IoU < self.nms_t]
+
+        curr_idx = np.array(curr_idx)
+
+        return (box_predictions[curr_idx],
+                predicted_box_classes[curr_idx],
+                predicted_box_scores[curr_idx])
 
     def calc_iou(self, current_box, remaining_boxes):
         """calculates iou
@@ -295,12 +290,12 @@ args:
             x1, y1, x2, y2 = box
             cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
             class_name = self.class_names[class_idx]
-            rounded_score = round(score)
+            rounded_score = round(score, 2)
 
             text_pos = (x1, y1 - 5)
             text = f"{class_name} {rounded_score}"
             cv2.putText(image, text, text_pos,
-                        cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,
+                        cv2.FONT_HERSHEY_SIMPLEX,
                         0.5,
                         (0, 0, 255),
                         1,
