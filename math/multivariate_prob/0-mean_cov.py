@@ -22,10 +22,10 @@ def mean_cov(X):
     
     You are not allowed to use the function numpy.cov"""
 
-    n, d = np.shape(X)
-
     if not isinstance(X, np.ndarray):
         raise TypeError("X must be a 2D numpy.ndarray")
+
+    n, d = np.shape(X)
 
     if n < 2:
         raise ValueError("X must contain muyltiple data points")
