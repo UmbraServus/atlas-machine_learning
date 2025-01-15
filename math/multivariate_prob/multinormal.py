@@ -33,4 +33,5 @@ You are not allowed to use the function numpy.cov"""
 
         self.data = data
         dataT = data.T
-        self.mean, self.cov = mean_cov(dataT)
+        mean, self.cov = mean_cov(dataT)
+        self.mean = mean.reshape(-1, 1)
