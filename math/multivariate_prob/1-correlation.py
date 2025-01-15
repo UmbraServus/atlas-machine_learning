@@ -16,7 +16,7 @@ def correlation(C):
 
     Returns: np.ndarr shape (d, d) containing the correlation matrix"""
 
-    if not isinstance(C, np.ndarray) or C.shape != 2:
+    if not isinstance(C, np.ndarray):
         raise TypeError("C must be a numpy.ndarray")
 
     d, d2 = C.shape
