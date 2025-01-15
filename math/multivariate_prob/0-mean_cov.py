@@ -19,10 +19,9 @@ def mean_cov(X):
     Returns: mean, cov:
         mean is np.ndarr shape (1, d) containing the mean of the data set
         cov is np.ndarr shape (d, d) containin the covar mat of the data set
-    
     You are not allowed to use the function numpy.cov"""
 
-    if not isinstance(X, np.ndarray):
+    if not isinstance(X, np.ndarray) or len(X.shape) != 2:
         raise TypeError("X must be a 2D numpy.ndarray")
 
     n, d = np.shape(X)
