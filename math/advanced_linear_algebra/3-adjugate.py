@@ -15,6 +15,7 @@ def matrix_transpose(matrix):
         matrixT.append(new_row)
     return matrixT
 
+
 def adjugate(matrix):
     """ that calculates the adjugate matrix of a matrix
 matrix: list of lists whose adjugate matrix should be calculated
