@@ -2,16 +2,19 @@
 """module for cofactor calc"""
 minor = __import__('1-minor').minor
 
+
 def cofactor(matrix):
     """that calculates the cofactor matrix of a matrix:
 matrix: a list of lists whose cofactor matrix should be calculated
     If matrix is not a list of lists, raise a TypeError with the message
     matrix must be a list of lists
-    If matrix is not square or is empty, raise a ValueError with the message matrix must be a non-empty square matrix
+    If matrix is not square or is empty, raise a ValueError with the message
+    matrix must be a non-empty square matrix
 
 Returns: the cofactor matrix of matrix"""
 
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+    if not isinstance(matrix, list) or not all(isinstance(row, list) 
+                                               for row in matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) == 0 or len(matrix[0]) == 0:
         raise ValueError("matrix must be a list of lists")
