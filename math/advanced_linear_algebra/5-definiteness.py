@@ -2,6 +2,7 @@
 """module for calc definiteness of a matrix"""
 import numpy as np
 
+
 def definiteness(matrix):
     """that calculates the definiteness of a matrix:
 
