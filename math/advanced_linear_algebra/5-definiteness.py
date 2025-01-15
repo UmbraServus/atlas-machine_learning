@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """module for calc definiteness of a matrix"""
-
+import numpy as np
 
 def definiteness(matrix):
     """that calculates the definiteness of a matrix:
@@ -19,5 +19,4 @@ positive semi-definite,
 negative semi-definite,
 negative definite of indefinite, respectively
 If matrix does not fit any of the above categories, return None
-
-You may import numpy as np"""
+"""
