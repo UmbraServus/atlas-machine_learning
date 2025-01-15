@@ -13,7 +13,7 @@ matrix: a list of lists whose cofactor matrix should be calculated
 
 Returns: the cofactor matrix of matrix"""
 
-    if not isinstance(matrix, list) or not all(isinstance(row, list) 
+    if not isinstance(matrix, list) or not all(isinstance(row, list)
                                                for row in matrix):
         raise TypeError("matrix must be a list of lists")
     if len(matrix) == 0 or len(matrix[0]) == 0:
