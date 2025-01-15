@@ -30,7 +30,7 @@ def mean_cov(X):
         raise ValueError("X must contain multiple data points")
 
     mean = np.mean(X, axis=0)
-    mean = mean.reshape(1, -1)
+    mean = mean.reshape(-1, 1)
 
     X_center = X - mean
 
