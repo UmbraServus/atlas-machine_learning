@@ -5,7 +5,7 @@ import numpy as np
 
 def correlation(C):
     """calculates a correlation matrix
-    cor = C / stddev(xi) * stddev(xj)    
+    cor = C / stddev(xi) * stddev(xj)
     C: np.ndarr shape (d, d) containing a covariance matrix
         d is the number of dimensions
 
