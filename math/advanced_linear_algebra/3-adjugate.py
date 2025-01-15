@@ -2,6 +2,7 @@
 """module for calc the adjugate matrix (cofactor transpose)"""
 cofactor = __import__('2-cofactor').cofactor
 
+
 def matrix_transpose(matrix):
     """ function for transposing a 2d matrix """
     matrixT = []
@@ -30,9 +31,9 @@ Returns: the adjugate matrix of matrix"""
         raise ValueError("matrix must be a non-empty square matrix")
     if len(matrix) != len(matrix[0]):
         raise ValueError("matrix must be a non-empty square matrix")
-    
+
     cofac_mat = cofactor(matrix)
-    
+
     adjugate_mat = matrix_transpose(cofac_mat)
 
     return adjugate_mat
