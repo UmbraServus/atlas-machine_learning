@@ -11,10 +11,10 @@ class constructor def __init__(self, data):
     data: numpy.ndarray of shape (d, n) containing the data set:
         n is the number of data points
         d is the number of dimensions in each data point
-    
-    If data is not a 2D numpy.ndarray, raise a TypeError with the 
+
+    If data is not a 2D numpy.ndarray, raise a TypeError with the
     message data must be a 2D numpy.ndarray
-    If n is less than 2, raise a ValueError with the 
+    If n is less than 2, raise a ValueError with the
     message data must contain multiple data points
 
     Set the public instance variables:
@@ -26,7 +26,7 @@ You are not allowed to use the function numpy.cov"""
 
         if not isinstance(data, np.ndarray) or len(data.shape) != 2:
             raise TypeError("data must be a 2D numpy.ndarray")
-        
+
         d, n = data.shape
         if n < 2:
             raise ValueError("data must contain multiple data points")
