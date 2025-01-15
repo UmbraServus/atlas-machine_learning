@@ -26,7 +26,7 @@ Returns: the minor matrix of matrix"""
     for row in range(len(matrix)):
         minor_row = []
         for col in range(len(matrix[row])):
-            sub_mat = [row[:col] + row[col + 1:] for row in (matrix[:row] + 
+            sub_mat = [row[:col] + row[col + 1:] for row in (matrix[:row] +
                                                              matrix[row+1:])]
             minor_row.append(determinant(sub_mat))
         minor_mat.append(minor_row)
