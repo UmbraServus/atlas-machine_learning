@@ -32,5 +32,5 @@ You are not allowed to use the function numpy.cov"""
             raise ValueError("data must contain multiple data points")
 
         self.data = data
-
-        self.mean, self.cov = mean_cov(data)
+        dataT = data.T
+        self.mean, self.cov = mean_cov(dataT)
