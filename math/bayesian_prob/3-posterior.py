@@ -2,6 +2,7 @@
 """module for posterior"""
 import numpy as np
 
+
 def posterior(x, n, P, Pr):
     """that calculates the posterior probability for the various hypothetical
     probabilities of developing severe side effects given the data:
