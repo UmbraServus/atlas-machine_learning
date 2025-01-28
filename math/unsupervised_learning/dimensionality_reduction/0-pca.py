@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import numpy as np
+"""module for pca and returning the weights W"""
 
 
 def pca(X, var=0.95):
-    """ that performs PCA on a dataset:
+    """performs PCA on a dataset:
 
 X: a numpy.ndarray of shape (n, d) where:
     n is the number of data points
