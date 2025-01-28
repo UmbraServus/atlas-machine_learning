@@ -22,7 +22,7 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     eigval, eigvec = np.linalg.eig(cov_matrix)
     sorted_idxs = np.argsort(eigval)[::-1]
     sorted_eigval = eigval[sorted_idxs]
-    sorted_eigvec = eigvec[:sorted_idxs]
+    sorted_eigvec = eigvec[:, sorted_idxs]
     tot_var = np.sum(sorted_eigval)
     explained_var = np.cumsum(sorted_eigval) / tot_var
     nd = np.argmax(explained_var >= var) + 1
