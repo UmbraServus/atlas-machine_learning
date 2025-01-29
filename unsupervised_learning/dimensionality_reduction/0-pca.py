@@ -27,5 +27,5 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     W = sorted_eigvec[:,: nd + 1]
     for i in range(W.shape[1]):
         if W[0, i] < 0:
-            W[:, i] *= -1
+            W[:, i + 1] *= -1
     return W
