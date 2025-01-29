@@ -28,6 +28,6 @@ version of X"""
     W = sorted_eigvec[:, :ndim]
     for i in range(W.shape[1]):
         if W[0, i] < 0:
-            W[:, i] *= -1
+            W[:, i + 1] *= -1
     T = np.dot(X_centered, W)
     return T
