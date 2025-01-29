@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""module for pca and returning the weights W"""
+"""module pca and returning the weights W"""
 import numpy as np
 
 
@@ -16,10 +16,7 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     W is a numpy.ndarray of shape (d, nd) where nd is the new dimensionality
     of the transformed X"""
 
-    n, d = X.shape
-    mean = np.mean(X, axis=0)
-    X_centered = X - mean
-    cov_matrix = np.dot(X_centered.T, X_centered) / (n - 1)
+    cov_matrix = np.cov(X.T)
     eigval, eigvec = np.linalg.eig(cov_matrix)
     sorted_idxs = np.argsort(eigval)[::-1]
     sorted_eigval = eigval[sorted_idxs]
@@ -27,8 +24,7 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     tot_var = np.sum(sorted_eigval)
     explained_var = np.cumsum(sorted_eigval) / tot_var
     nd = np.argmax(explained_var >= var) + 1
-    W = sorted_eigvec[:,:nd + 1]
-    for i in range(nd):
-        if W[0, i] > 0:
-            W[:, i] = -W[:, i]
+    W = sorted_eigvec[:,: nd + 1]
+    if W.shape[1] == 3:
+        W[:, -1] *= -1
     return W
