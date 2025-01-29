@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import numpy as np
 """module for pca and returning the weights W"""
+import numpy as np
 
 
 def pca(X, var=0.95):
@@ -29,6 +29,6 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     nd = np.argmax(explained_var >= var) + 1
     W = sorted_eigvec[:,:nd + 1]
     for i in range(nd):
-        if W[0, i + 1] < 0:
+        if W[0, i] > 0:
             W[:, i] = -W[:, i]
     return W
