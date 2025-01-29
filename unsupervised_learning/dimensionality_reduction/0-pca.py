@@ -24,8 +24,8 @@ Returns: weights matrix, W, that maintains var fraction of X‘s orig variance
     tot_var = np.sum(sorted_eigval)
     explained_var = np.cumsum(sorted_eigval) / tot_var
     nd = np.argmax(explained_var >= var) + 1
-    W = sorted_eigvec[:,: nd + 1]
+    W = sorted_eigvec[:, : nd + 1]
     for i in range(W.shape[1]):
         if W[0, i] < 0:
-            W[:, i + 1] *= -1
+            W[:,        i + 1] *= -1
     return W
