@@ -25,7 +25,7 @@ version of X"""
     sorted_eigvec = eigvec[:, sorted_idxs]
     tot_var = np.sum(sorted_eigval)
     explained_var = np.cumsum(sorted_eigval) / tot_var
-    W = sorted_eigvec[:,:ndim]
+    W = sorted_eigvec[:, :ndim]
     for i in range(W.shape[1]):
         if W[0, i] < 0:
             W[:, i + 1] *= -1
