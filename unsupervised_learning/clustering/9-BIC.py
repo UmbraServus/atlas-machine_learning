@@ -19,9 +19,9 @@ def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
 
     iterations: a positive integer containing the maximum number of
     iterations the EM algorithm
-    
+
     tol: a non-negative float containing the tolerance  the EM algorithm
-    
+
     verbose: a boolean that determines if the EM algorithm should print
     inmation to the standard output
 
