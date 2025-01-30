@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """module containing method of K-means on a dataset"""
-import numpy as np
 import sklearn.cluster
 
 
