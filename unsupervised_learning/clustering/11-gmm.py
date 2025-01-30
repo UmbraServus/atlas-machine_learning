@@ -3,13 +3,11 @@
 import sklearn.mixture
 
 
-def gmm(X, k): 
+def gmm(X, k):
     """that calculates a GMM from a dataset:
 
 X: a numpy.ndarray of shape (n, d) containing the dataset
 k: the number of clusters
-
-The only import you are allowed to use is import sklearn.mixture
 
 Returns: pi, m, S, clss, bic
     pi is a numpy.ndarray of shape (k,) containing the cluster priors
