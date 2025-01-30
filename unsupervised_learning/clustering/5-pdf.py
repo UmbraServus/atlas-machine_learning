@@ -4,7 +4,8 @@ import numpy as np
 
 
 def pdf(X, m, S): 
-    """that calculates the probability density function of a Gaussian distribution:
+    """that calculates the probability density function of a Gaussian
+    distribution:
 
     X: a numpy.ndarray of shape (n, d) containing the data points whose
     PDF should be evaluated
