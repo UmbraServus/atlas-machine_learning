@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""module containing method of K-means on a dataset"""
+"""module containing method of K-means on a dataset""" 
 import sklearn.cluster
 
 
@@ -8,7 +8,7 @@ def kmeans(X, k):
 
 X: a numpy.ndarray of shape (n, d) containing the dataset
 k: the number of clusters
-    The only import you are allowed to use is import sklearn.cluster
+    The only you are allowed to use is sklearn.cluster
 Returns: C, clss
     C: a numpy.ndarray of shape (k, d) containing the centroid means
     each cluster
