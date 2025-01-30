@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """module bayesian inmation criterion """
 import numpy as np
+expectation_maximization =__import__('8-EM').expectation_maximization
 
 
 def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
@@ -25,9 +26,6 @@ def BIC(X, kmin=1, kmax=None, iterations=1000, tol=1e-5, verbose=False):
     verbose: a boolean that determines if the EM algorithm should print
     inmation to the standard output
 
-
-    You should use expectation_maximization =
-    __import__('8-EM').expectation_maximization
     You may use at most 1 loop
 
     Returns: best_k, best_result, l, b, or None, None, None, None on failure
