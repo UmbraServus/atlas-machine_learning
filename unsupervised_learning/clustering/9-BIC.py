@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""module bayesian inmation criterion """
+"""module bayesian infrmation criterion """
 import numpy as np
 expectation_maximization =__import__('8-EM').expectation_maximization
 
