@@ -14,10 +14,10 @@ def expectation(X, pi, m, S):
     each cluster
 
     You may use at most 1 loop
-    
+
     Returns: g, l, or None, None on failure
         g is a numpy.ndarray of shape (k, n) containing the posterior
         probabilities each data point in each cluster
         l is the total log likelihood
-    
+
     You should use pdf = __import__('5-pdf').pdf"""
