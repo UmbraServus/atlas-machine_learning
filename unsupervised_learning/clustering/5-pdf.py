@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def pdf(X, m, S): 
+def pdf(X, m, S):
     """that calculates the probability density function of a Gaussian
     distribution:
 
