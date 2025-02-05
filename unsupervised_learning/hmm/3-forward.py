@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-""" This module contains the implementation of the forward algorithm for
-a hidden Markov model. """
+""" This module contains the implementation of the forward algorithm"""
 import numpy as np
 
 
@@ -18,15 +17,15 @@ def forward(Observation, Emission, Transition, Initial):
         - M is the number of all possible observations
     - Transition: 2D numpy.ndarray of shape (N, N) containing the transition
       probabilities
-        - Transition[i, j] is the probability of transitioning from the hidden
+        - Transition[i, j] is the probability of transitioning from the hiddn
           state i to j
     - Initial: numpy.ndarray of shape (N, 1) containing the probability of
       starting in a particular hidden state
 
     Returns:
     - P: the likelihood of the observations given the model
-    - F: numpy.ndarray of shape (N, T) containing the forward path probablties
-        - F[i, j] is the probability of being in hidden state i at time j givn
+    - F: numpy.ndarray of shape (N, T) containing the forward path probabltie
+        - F[i, j] is the probability of being in hidden state i at time j gvn
           the previous observations
     - None, None on failure"""
 
