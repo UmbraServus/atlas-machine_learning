@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+"""module for probability of a Markov chain being in a particular
+state after a specified number of iterations"""
 import numpy as np
-"""module for markov chain"""
+
 
 def markov_chain(P, s, t=1):
     """
