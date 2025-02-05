@@ -18,8 +18,8 @@ def absorbing(P):
     """
     # Check if P is a square matrix
     if (not isinstance(P, np.ndarray) or P.ndim != 2
-        or P.shape[0] != P.shape[1]):
-            return False
+    or P.shape[0] != P.shape[1]):
+        return False
 
     n = P.shape[0]
 
