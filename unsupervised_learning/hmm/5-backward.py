@@ -18,7 +18,7 @@ def backward(Observation, Emission, Transition, Initial):
           state i
         - N is the number of hidden states
         - M is the number of all possible observations
-    - Transition: 2D numpy.ndarray of shape (N, N) containing the transition 
+    - Transition: 2D numpy.ndarray of shape (N, N) containing the transition
       probabilities
         - Transition[i, j] is the probability of transitioning from the hidden
           state i to j
