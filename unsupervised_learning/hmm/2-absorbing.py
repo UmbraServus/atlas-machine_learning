@@ -1,22 +1,24 @@
-import numpy as np
-
 #!/usr/bin/env python3
 """Module to determine if a Markov chain is absorbing."""
+import numpy as np
+
 
 def absorbing(P):
     """
     Determines if a Markov chain is absorbing.
 
     Parameters:
-    P (numpy.ndarray): A square 2D numpy.ndarray of shape (n, n) representing the standard transition matrix.
-                       P[i, j] is the probability of transitioning from state i to state j.
+    P (numpy.ndarray): A square 2D numpy.ndarray of shape (n, n) representing
+                       the standard transition matrix. P[i, j] is the
+                       probability of transitioning from state i to state j.
                        n is the number of states in the Markov chain.
 
     Returns:
     bool: True if the Markov chain is absorbing, or False on failure.
     """
     # Check if P is a square matrix
-    if not isinstance(P, np.ndarray) or P.ndim != 2 or P.shape[0] != P.shape[1]:
+    if (not isinstance(P, np.ndarray) or P.ndim != 2
+        or P.shape[0] != P.shape[1]):
         return False
 
     n = P.shape[0]
