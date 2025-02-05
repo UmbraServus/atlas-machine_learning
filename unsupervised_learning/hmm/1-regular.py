@@ -32,8 +32,8 @@ def regular(P):
 
     # Solve the equation πP = π with the constraint that the
     # sum of π is 1
-    I = np.eye(n)
-    A = np.append((P.T - I), np.ones((1, n)), axis=0)
+    Id = np.eye(n)
+    A = np.append((P.T - Id), np.ones((1, n)), axis=0)
     b = np.append(np.zeros(n), 1)
     steady_state = np.linalg.lstsq(A, b, rcond=None)[0].reshape(1, n)
     return steady_state
