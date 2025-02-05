@@ -38,3 +38,4 @@ def forward(Observation, Emission, Transition, Initial):
             # Compute the forward probability for each state
     # Compute the likelihood of the observations
     # Return the likelihood and the forward path probability matrix
+    return None
