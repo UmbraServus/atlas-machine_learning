@@ -17,9 +17,8 @@ def absorbing(P):
     bool: True if the Markov chain is absorbing, or False on failure.
     """
     # Check if P is a square matrix
-    if (not isinstance(P, np.ndarray) or
-        P.ndim != 2 or
-        P.shape[0] != P.shape[1]):
+    if (not isinstance(P, np.ndarray) or P.ndim != 2 or
+            P.shape[0] != P.shape[1]):
         return False
 
     n = P.shape[0]
