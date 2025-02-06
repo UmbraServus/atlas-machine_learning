@@ -40,7 +40,7 @@ def forward(Observation, Emission, Transition, Initial):
     # Compute the initial probabilities
     F[:, 0] = Initial.T * Emission[:, Observation[0]]
     # Iterate over each time step
-    for t in range (1, T):
+    for t in range(1, T):
         # Iterate over each state
         for j in range(N):
             # Compute the forward probability for each state
