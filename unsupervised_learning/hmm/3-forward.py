@@ -30,12 +30,23 @@ def forward(Observation, Emission, Transition, Initial):
     - None, None on failure"""
 
     # Initialize variables
+    N = Initial.shape[0]
+    T = Observation.shape[0]
     # Check for input validity
+    if len(Observation.shape) != 1:
+        return None, None
     # Initialize the forward path probability matrix F
+    F = np.zeros((N, T))
     # Compute the initial probabilities
+    F[:, 0] = Initial.T * Emission[:, Observation[0]]
     # Iterate over each time step
+    for t in range (1, T):
         # Iterate over each state
+        for j in range(N):
             # Compute the forward probability for each state
+            F[j, t] = np.sum(F[:, t - 1] * Transition[:, j] *
+                             Emission[j, Observation[t]])
     # Compute the likelihood of the observations
+    P = np.sum(F[:, T - 1])
     # Return the likelihood and the forward path probability matrix
-    return None
+    return P, F
