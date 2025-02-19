@@ -56,6 +56,6 @@ class GaussianProcess:
         # Calculate the covariance of the new points
         cov = K_ss - K_s.T.dot(K_inv).dot(K_s)
         # Calculate the standard deviation of the new points
-        sigma = np.diag(cov) ** 0.5
+        sigma = np.diag(cov)
         # Return the mean and the std. dev. (sqrt of the covariance diagonal)
         return mu, sigma
