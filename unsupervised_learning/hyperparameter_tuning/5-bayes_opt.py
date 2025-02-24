@@ -80,8 +80,8 @@ class BayesianOptimization:
                 # Calculate the next sampling point using the acq function
                 X_next, _ = self.acquisition()
                 
-                # If the next point has already been sampled, stop early
-                if X_next in self.gp.X:
+                # If the next point is close to the sample, stop early
+                if np.any(np.abs(X_next - self.gp.X) <= 1e-10):
                     break
                 # Sample the function at the new point
                 Y_next = self.f(X_next)
@@ -89,11 +89,12 @@ class BayesianOptimization:
                 self.gp.update(X_next, Y_next)
                 # Determine the optimal point and its function value
             if self.minimize:
-                X_opt = self.gp.X[np.argmin(self.gp.Y)]
-                Y_opt = self.gp.Y.min(axis=0)
+                idx = np.argmin(self.gp.Y)
+
             else:
-                X_opt = self.gp.X[np.argmax(self.gp.Y)]
-                Y_opt = self.gp.Y.max(axis=0)
+                idx = np.argmax(self.gp.Y)
+            X_opt = self.gp.X[idx]
+            Y_opt = self.gp.Y[idx]
             return X_opt, Y_opt
 
     @staticmethod
