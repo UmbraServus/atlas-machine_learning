@@ -56,6 +56,7 @@ x and n, for each probability in P, respectively"""
     # 7. Return the likelihoods as a 1D numpy.ndarray
     return likelihood
 
+
 def intersection(x, n, P, Pr):
     """ method that calculates the intersection of obtaining this data with
     the various hypothetical probabilities:
