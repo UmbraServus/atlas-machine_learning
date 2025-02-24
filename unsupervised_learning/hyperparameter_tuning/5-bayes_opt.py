@@ -59,6 +59,7 @@ class BayesianOptimization:
         """
         mu, sigma = self.gp.predict(self.X_s)
         mu_sample = self.gp.predict(self.gp.X)
+        sigma = np.maximum(sigma, 1e-9)
         EI = BayesianOptimization.compute_ei(mu, sigma, mu_sample,
                                              self.minimize, self.xsi)
         X_next = self.X_s[np.argmax(EI)]
@@ -113,7 +114,7 @@ class BayesianOptimization:
         xsi: the exploration-exploitation factor for acquisition
 
         Returns:
-        EI: numpy.ndarray of shape (ac_samples,) containing
+        EI: numpy.ndarray of shape (ac_sample   s,) containing
         the expected improvement
         """
         if minimize:
@@ -125,5 +126,5 @@ class BayesianOptimization:
         with np.errstate(divide='ignore'):
             Z = improvement / sigma
             EI = improvement * norm.cdf(Z) + sigma * norm.pdf(Z)
-            EI[sigma == 0.0] = 0.0
+            EI[sigma == 0] = 0
         return EI
