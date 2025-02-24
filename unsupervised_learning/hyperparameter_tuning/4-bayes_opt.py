@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """bayes opt class module"""
 import numpy as np
+from scipy.stats import norm
 GP = __import__('2-gp').GaussianProcess
 
 
@@ -44,3 +45,43 @@ class BayesianOptimization:
         self.X_s = np.linspace(bounds[0], bounds[1], ac_samples).reshape(-1, 1)
         self.xsi = xsi
         self.minimize = minimize
+
+def acquisition(self):
+    """
+    Calculates the next best sample location using the Expected Improvement acquisition function.
+
+    Returns:
+    X_next: numpy.ndarray of shape (1,) representing the next best sample point
+    EI: numpy.ndarray of shape (ac_samples,) containing the expected improvement of each potential sample
+    """
+    mu, sigma = self.gp.predict(self.X_s)
+    mu_sample = self.gp.predict(self.gp.X)
+    EI = compute_ei(mu, sigma, mu_sample, self.minimize, self.xsi)
+    X_next = self.X_s[np.argmax(EI)]
+    return X_next, EI
+
+def compute_ei(mu, sigma, mu_sample, minimize, xsi):
+    """
+    Computes the expected improvement of a sample point.
+
+    Parameters:
+    mu: numpy.ndarray of shape (ac_samples,) containing the mean of the Gaussian process
+    sigma: numpy.ndarray of shape (ac_samples,) containing the standard deviation of the Gaussian process
+    mu_sample: numpy.ndarray of shape (t, 1) containing the means of the points already sampled
+    minimize: bool determining whether optimization should be performed for minimization (True) or maximization (False)
+    xsi: the exploration-exploitation factor for acquisition
+
+    Returns:
+    EI: numpy.ndarray of shape (ac_samples,) containing the expected improvement of each potential sample
+    """
+    if minimize:
+        mu_sample_opt = np.min(mu_sample)
+        improvement = mu_sample_opt - mu - xsi
+    else:
+        mu_sample_opt = np.max(mu_sample)
+        improvement = mu - mu_sample_opt - xsi
+    with np.errstate(divide='ignore'):
+        Z = improvement / sigma
+        EI = improvement * norm.cdf(Z) + sigma * norm.pdf(Z)
+        EI[sigma == 0.0] = 0.0
+    return EI
