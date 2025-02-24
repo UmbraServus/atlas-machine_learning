@@ -32,7 +32,7 @@ x and n, for each probability in P, respectively"""
 
     # Pseudo code:
     # 1. Check if n is a positive integer
-    if not isinstance(n, int) or n < 0:
+    if not isinstance(n, int) or not n > 0:
         raise ValueError("n must be a positive integer")
     # 2. Check if x is an integer and greater than or equal to 0
     if not isinstance(x, int) or x < 0:
