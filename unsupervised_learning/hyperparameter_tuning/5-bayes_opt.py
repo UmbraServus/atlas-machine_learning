@@ -90,10 +90,10 @@ class BayesianOptimization:
                 # Determine the optimal point and its function value
             if self.minimize:
                 X_opt = self.gp.X[np.argmin(self.gp.Y)]
-                Y_opt = np.min(self.gp.Y)
+                Y_opt = self.gp.Y.min(axis=0)
             else:
                 X_opt = self.gp.X[np.argmax(self.gp.Y)]
-                Y_opt = np.max(self.gp.Y)
+                Y_opt = self.gp.Y.max(axis=0)
             return X_opt, Y_opt
 
     @staticmethod
