@@ -66,8 +66,7 @@ class BayesianOptimization:
         return X_next, EI
 
     def optimize(self, iterations=100):
-        """
-            Optimizes the black-box function.
+        """ Optimizes the black-box function.
 
             Parameters:
             iterations: the maximum number of iterations to perform
@@ -75,8 +74,8 @@ class BayesianOptimization:
             Returns:
             X_opt: numpy.ndarray of shape (1,) representing the optimal point
             Y_opt: numpy.ndarray of shape (1,) representing the optimal
-            function value
-"""
+            function value"""
+
         for i in range(iterations):
             # Calculate the next sampling point using the acq function
             X_next, _ = self.acquisition()
