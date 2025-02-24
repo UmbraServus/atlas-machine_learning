@@ -66,7 +66,7 @@ class BayesianOptimization:
         return X_next, EI
 
     def optimize(self, iterations=100):
-            """
+        """
             Optimizes the black-box function.
 
             Parameters:
@@ -76,27 +76,27 @@ class BayesianOptimization:
             X_opt: numpy.ndarray of shape (1,) representing the optimal point
             Y_opt: numpy.ndarray of shape (1,) representing the optimal
             function value
-            """
-            for i in range(iterations):
-                # Calculate the next sampling point using the acq function
-                X_next, _ = self.acquisition()
+"""
+        for i in range(iterations):
+            # Calculate the next sampling point using the acq function
+            X_next, _ = self.acquisition()
+    
+            # If the next point is close to the sample, stop early
+            if np.any(np.abs(X_next - self.gp.X) <= 1e-10):
+                break
+            # Sample the function at the new point
+            Y_next = self.f(X_next)
+            # Update the Gaussian process with the new sample
+            self.gp.update(X_next, Y_next)
+            # Determine the optimal point and its function value
+        if self.minimize:
+            idx = np.argmin(self.gp.Y)
 
-                # If the next point is close to the sample, stop early
-                if np.any(np.abs(X_next - self.gp.X) <= 1e-10):
-                    break
-                # Sample the function at the new point
-                Y_next = self.f(X_next)
-                # Update the Gaussian process with the new sample
-                self.gp.update(X_next, Y_next)
-                # Determine the optimal point and its function value
-            if self.minimize:
-                idx = np.argmin(self.gp.Y)
-
-            else:
-                idx = np.argmax(self.gp.Y)
-            X_opt = self.gp.X[idx]
-            Y_opt = self.gp.Y[idx]
-            return X_opt, Y_opt
+        else:
+            idx = np.argmax(self.gp.Y)
+        X_opt = self.gp.X[idx]
+        Y_opt = self.gp.Y[idx]
+        return X_opt, Y_opt
 
     @staticmethod
     def compute_ei(mu, sigma, mu_sample, minimize, xsi):
