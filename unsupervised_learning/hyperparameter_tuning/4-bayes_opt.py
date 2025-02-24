@@ -65,14 +65,18 @@ def compute_ei(mu, sigma, mu_sample, minimize, xsi):
     Computes the expected improvement of a sample point.
 
     Parameters:
-    mu: numpy.ndarray of shape (ac_samples,) containing the mean of the Gaussian process
-    sigma: numpy.ndarray of shape (ac_samples,) containing the standard deviation of the Gaussian process
-    mu_sample: numpy.ndarray of shape (t, 1) containing the means of the points already sampled
-    minimize: bool determining whether optimization should be performed for minimization (True) or maximization (False)
+    mu: numpy.ndarray of shape (ac_samples,) containing the mean
+    of the GP
+    sigma: numpy.ndarray of shape (ac_samples,) containing the std
+    dev of the GP
+    mu_sample: numpy.ndarray of shape (t, 1) containing the means
+    of sampled pts
+    minimize: bool for minimization (True) or maximization (False)
     xsi: the exploration-exploitation factor for acquisition
 
     Returns:
-    EI: numpy.ndarray of shape (ac_samples,) containing the expected improvement of each potential sample
+    EI: numpy.ndarray of shape (ac_samples,) containing
+    the expected improvement
     """
     if minimize:
         mu_sample_opt = np.min(mu_sample)
