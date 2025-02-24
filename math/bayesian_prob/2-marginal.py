@@ -120,7 +120,6 @@ with each probability in P, respectively"""
     return likelihood(x, n, P) * Pr
 
 
-
 def marginal(x, n, P, Pr):
     """that calculates the marginal probability of obtaining the data:
 
