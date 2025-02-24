@@ -79,7 +79,7 @@ class BayesianOptimization:
             for i in range(iterations):
                 # Calculate the next sampling point using the acq function
                 X_next, _ = self.acquisition()
-                
+
                 # If the next point is close to the sample, stop early
                 if np.any(np.abs(X_next - self.gp.X) <= 1e-10):
                     break
