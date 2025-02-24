@@ -63,7 +63,7 @@ class BayesianOptimization:
                                              self.minimize, self.xsi)
         X_next = self.X_s[np.argmax(EI)]
         return X_next, EI
-    
+
     @staticmethod
     def compute_ei(mu, sigma, mu_sample, minimize, xsi):
         """
