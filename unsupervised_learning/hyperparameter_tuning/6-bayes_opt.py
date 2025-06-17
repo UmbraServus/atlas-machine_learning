@@ -97,7 +97,7 @@ def objective_function(params):
 #             L2 regularization weight between 0 and 0.1,
 #             batch size from 16 to 128
 domain = [
-    {'name': 'learning_rate', 'type': 'continuous', 'domain': (1e-3, 0.1)},
+    {'name': 'learning_rate', 'type': 'continuous', 'domain': (1e-4, 0.1)},
     {'name': 'units', 'type': 'discrete', 'domain': (32, 64, 128)},
     {'name': 'dropout_rate', 'type': 'continuous', 'domain': (0.0, 0.3)},
     {'name': 'l2_weight', 'type': 'continuous', 'domain': (1e-6, 0.01)},
@@ -133,7 +133,7 @@ with open('bayes_opt.txt', 'w') as f:
     f.write(str(bo.x_opt) + '\n')
 # 8. End
 print("Best hyperparams:")
-print(f"  Learning rate:     {bo.x_opt[0]:.5f}")
+print(f"  Learning rate:     {bo.x_opt[0]:.4f}")
 print(f"  Units:             {int(bo.x_opt[1])}")
 print(f"  Dropout rate:      {bo.x_opt[2]:.5f}")
 print(f"  L2 weight:         {bo.x_opt[3]:.5f}")
