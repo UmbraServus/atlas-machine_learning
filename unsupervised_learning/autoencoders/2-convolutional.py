@@ -40,7 +40,7 @@ binary cross-entropy loss"""
         x = K.layers.Conv2D(filters=f, kernel_size=(3, 3),
                             padding='same',
                             activation='relu')(x)
-        x = K.layers.MaxPooling2D(pool_size=(2, 2))(x)
+        x = K.layers.MaxPooling2D(pool_size=(2, 2), padding='same')(x)
     latent_layer = x
     #K.layers.Conv2D(filters=latent_dims[-1],
                                    #kernel_size=(3, 3),
