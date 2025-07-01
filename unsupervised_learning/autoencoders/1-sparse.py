@@ -26,9 +26,7 @@ decoder, which should use sigmoid"""
     input_layer = K.Input(shape=(input_dims,))
     x = input_layer
     for nodes in hidden_layers:
-        x = K.layers.Dense(nodes,
-                           activation='relu',
-                           activity_regularizer=reg)(x)
+        x = K.layers.Dense(nodes, activation='relu',)(x)
     latent_layer = K.layers.Dense(latent_dims,
                                   activation='relu',
                                   activity_regularizer=reg)(x)
