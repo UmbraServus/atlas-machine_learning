@@ -51,7 +51,7 @@ binary cross-entropy loss"""
     #decoder model
     latent_input = K.Input(shape=latent_dims)
     x = latent_input
-    for f in reversed(filters[:-1]):
+    for f in reversed(filters[1:]):
         x = K.layers.Conv2D(filters=f, kernel_size=(3, 3),
                             padding='same',
                             activation='relu')(x)
