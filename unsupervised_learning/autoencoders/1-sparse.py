@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ module that creates an autoencoder """
 import tensorflow.keras as K
-from tensorflow.keras import regularizers
 
 def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     """ creates a sparse autoencoder
@@ -23,7 +22,7 @@ cross-entropy loss
 All layers should use a relu activation except for the last layer in the
 decoder, which should use sigmoid"""
     # Create the encoder model
-    reg = regularizers.l1(1e-5)
+    reg = K.regularizers.l1(1e-5)
     input_layer = K.Input(shape=(input_dims,))
     x = input_layer
     for nodes in hidden_layers:
