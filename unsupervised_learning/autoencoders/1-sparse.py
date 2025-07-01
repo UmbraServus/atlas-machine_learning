@@ -22,7 +22,7 @@ cross-entropy loss
 All layers should use a relu activation except for the last layer in the
 decoder, which should use sigmoid"""
     # Create the encoder model
-    reg = K.regularizers.l1(1e-5)
+    reg = K.regularizers.l1(lambtha)
     input_layer = K.Input(shape=(input_dims,))
     x = input_layer
     for nodes in hidden_layers:
