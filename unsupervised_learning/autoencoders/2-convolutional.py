@@ -57,7 +57,7 @@ binary cross-entropy loss"""
                             activation='relu')(x)
         x = K.layers.UpSampling2D(size=(2, 2))(x)
     x = K.layers.Conv2D(filters=filters[0], kernel_size=(3, 3),
-                        padding='valid',
+                        padding='same',
                         activation='relu')(x)
     output_layer = K.layers.Conv2D(filters=input_dims[-1],
                                    kernel_size=(3, 3),
