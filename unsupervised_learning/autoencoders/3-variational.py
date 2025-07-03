@@ -35,7 +35,7 @@ and the last layer in the decoder, which should use sigmoid"""
     for nodes in hidden_layers:
         x = K.layers.Dense(nodes, activation='relu')(x)
     
-    # Create mean and log variance layers (not from latent_layer)
+    # Create mean and log variance layers
     mu = K.layers.Dense(latent_dims, activation=None)(x)
     log_var = K.layers.Dense(latent_dims, activation=None)(x)
     
