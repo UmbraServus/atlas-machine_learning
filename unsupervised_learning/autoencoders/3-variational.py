@@ -1,4 +1,4 @@
-#!/usr/bin/bin/env python3
+#!/usr/bin/env python3
 """ module that creates a variational autoencoder """
 import tensorflow.keras as K
 
