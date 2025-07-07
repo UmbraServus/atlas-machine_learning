@@ -26,7 +26,7 @@ class RNNCell():
         self.bh = np.zeros((1, h))
         self.by = np.zeros((1, o))
 
-    def forward(self, h_prev, x_t): 
+    def forward(self, h_prev, x_t):
         """ performs forward propagation for one time step
     args:
     x_t: np.ndarray of shape (m, i) that contains the data input for the cell
@@ -38,13 +38,13 @@ class RNNCell():
     Returns: h_next, y
     h_next is the next hidden state
     y is the output of the cell"""
-        #concat the previous hidden state and the input data
+        # concat the previous hidden state and the input data
         h_concat = np.concatenate((h_prev, x_t), axis=1)
-        #calculate the next hidden state and output
+        # calculate the next hidden state and output
         h_next = np.tanh(np.dot(h_concat, self.Wh) + self.bh)
-        #multiply the next hidden state with Wy and add by to get the output
+        # multiply the next hidden state with Wy and add by to get the output
         output = np.dot(h_next, self.Wy) + self.by
-        #apply softmax activation function to the output
+        # apply softmax activation function to the output
         output = np.exp(output) / np.sum(np.exp(output), axis=1, keepdims=True)
 
         return h_next, output
