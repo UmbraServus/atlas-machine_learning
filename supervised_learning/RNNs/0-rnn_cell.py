@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import numpy as np
 """Create the class RNNCell that represents a cell of a simple RNN"""
+import numpy as np
 
 
 class RNNCell():
