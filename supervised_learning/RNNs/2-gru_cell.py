@@ -31,6 +31,15 @@ class GRUCell():
         self.bh = np.zeros((1, h))
         self.by = np.zeros((1, o))
 
+    def sigmoid(self, x):
+        """Sigmoid activation function."""
+        return 1 / (1 + np.exp(-x))
+    
+    def softmax(self, x):
+        """Softmax activation function with numerical stability."""
+        exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
+        return exp_x / np.sum(exp_x, axis=1, keepdims=True)
+    
     def forward(self, h_prev, x_t):
         """Perform forward propagation for one time step
 
