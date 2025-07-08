@@ -22,7 +22,7 @@ def deep_rnn(rnn_cells, X, h_0):
     t, m, i = X.shape
 
     # Get the number of layers and the dimensionality of the hidden state
-    layers, _, h =h_0.shape
+    layers, _, h = h_0.shape
 
     # Initialize the hidden states and outputs
     H = np.zeros((t + 1, layers, m, h))
