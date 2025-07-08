@@ -20,7 +20,7 @@ class GRUCell():
     The weights will be used on the right side for matrix multiplication
     The biases should be initialized as zeros"""
 
-    def __init__(self, i , h, o):
+    def __init__(self, i, h, o):
         """Initialize the GRUCell"""
         self.Wz = np.random.normal(0, 1, (i + h, h))
         self.Wr = np.random.normal(0, 1, (i + h, h))
