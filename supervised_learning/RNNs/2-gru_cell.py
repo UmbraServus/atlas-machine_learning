@@ -34,18 +34,20 @@ class GRUCell():
     def sigmoid(self, x):
         """Sigmoid activation function."""
         return 1 / (1 + np.exp(-x))
-    
+
     def softmax(self, x):
         """Softmax activation function with numerical stability."""
         exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
         return exp_x / np.sum(exp_x, axis=1, keepdims=True)
-    
+
     def forward(self, h_prev, x_t):
         """Perform forward propagation for one time step
 
-        x_t: np.ndarray of shape (m, i) that contains the data input for the cell
+        x_t: np.ndarray of shape (m, i) that contains the data
+        input for the cell
         m: the batch size for the data
-        h_prev: a numpy.ndarray of shape (m, h) containing the prev hidden state
+        h_prev: a numpy.ndarray of shape (m, h) containing the
+        prev hidden state
 
         The output of the cell should use a softmax activation function
 
@@ -63,8 +65,10 @@ class GRUCell():
         r = self.sigmoid(np.dot(h_concat, self.Wr) + self.br)
 
         # candidate hidden state
-        candidate_h = np.tanh(np.dot(np.concatenate((r * h_prev, x_t), axis=1), self.Wh) + self.bh)
-
+        candidate_h = (
+            np.tanh(np.dot(np.concatenate((r * h_prev, x_t),
+                                          axis=1), self.Wh) + self.bh)
+        )
         # Next hidden state
         h_next = (1 - z) * h_prev + z * candidate_h
 
