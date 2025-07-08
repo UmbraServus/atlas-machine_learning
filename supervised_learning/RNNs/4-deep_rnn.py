@@ -21,27 +21,26 @@ def deep_rnn(rnn_cells, X, h_0):
     t, m, i = X.shape
 
     # Get the number of layers and the dimensionality of the hidden state
-    layers = len(rnn_cells)
-    h = rnn_cells[0].Wh.shape[1]
+    layers, _, h =h_0.shape
 
     # Initialize the hidden states and outputs
-    H = np.zeros((layers + 1, t + 1, m, h))
-    Y = np.zeros((layers, t, m, rnn_cells[0].Wy.shape[1]))
-    H[0, 0] = h_0
+    H = np.zeros((t + 1, layers, m, h))
+    Y = np.zeros((t, m, rnn_cells[-1].Wy.shape[1]))
+    H[0] = h_0
 
     # Iterate through each time step
     for step in range(t):
         # Iterate through each layer
         for layer in range(layers):
             # Get the previous hidden state for the current layer
-            h_prev = H[layer, step]
+            h_prev = H[step, layer]
             # Get the input for the current layer
-            x_t = X[step] if layer == 0 else H[layer - 1, step]
+            x_t = X[step] if layer == 0 else H[step, layer - 1]
             # Perform forward propagation for the current layer
             h_next, y = rnn_cells[layer].forward(h_prev, x_t)
             # Store the next hidden state and output
-            H[layer + 1, step + 1] = h_next
-            Y[layer, step] = y
-        # Store the hidden states for the next time step
-        H[0, step + 1] = h_next
+            H[step + 1, layer] = h_next
+            if layer == layers - 1:
+                # If it's the last layer, store the output
+                Y[step] = y
     return H, Y
