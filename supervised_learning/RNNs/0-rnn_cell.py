@@ -45,6 +45,7 @@ class RNNCell():
         # multiply the next hidden state with Wy and add by to get the output
         output = np.dot(h_next, self.Wy) + self.by
         # apply softmax activation function to the output
-        output = np.exp(output) / np.sum(np.exp(output), axis=1, keepdims=True)
+        output_exp = np.exp(output - np.max(output, axis=1, keepdims=True))
+        output = output_exp / np.sum(output_exp, axis=1, keepdims=True)
 
         return h_next, output
