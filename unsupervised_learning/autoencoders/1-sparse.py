@@ -2,6 +2,7 @@
 """ module that creates an autoencoder """
 import tensorflow.keras as K
 
+
 def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     """ creates a sparse autoencoder
 
