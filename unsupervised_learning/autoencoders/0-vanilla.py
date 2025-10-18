@@ -14,7 +14,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     latent_dims: int containing the dimens of the latent space representation
     Returns: encoder, decoder, auto """
 
-    #create the encoder model
+    # create the encoder model
     input_layer = K.Input(shape=(input_dims,))
     x = input_layer
     for nodes in hidden_layers:
