@@ -18,7 +18,8 @@ Each convolution in the encoder should use a kernel size of (3, 3) with same
 padding and relu activation, followed by max pooling of size (2, 2)
 
 Each convolution in the decoder, except for the last two, should use a filter
-size of (3, 3) with same padding and relu activation, followed by upsampling of size (2, 2)
+size of (3, 3) with same padding and relu activation,
+followed by upsampling of size (2, 2)
 
 The second to last convolution should instead use valid padding
 
