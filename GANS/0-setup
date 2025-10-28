@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+# Imports and setup
+import torch
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+import matplotlib.pyplot as plt
+import numpy as np
+import wandb  # for tracking experiments (Weights & Biases)
+
+# Initialize W&B project
+wandb.init(project="mnist_dcgan", config={
+    "dataset": "MNIST",
+    "framework": "PyTorch",
+    "model": "DCGAN"
+})
+
+# Set seed for reproducibility
+torch.manual_seed(42)
+
+# Define preprocessing for MNIST
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5,), (0.5,))
+])
+
+# Download MNIST training dataset  
+dataset = datasets.MNIST(root='./data',
+                         train=True,
+                         download=True,
+                         transform=transform)
+
+# Create DataLoader with batch size and shuffle
+batch_size = 128
+dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)  
+
+# Get one batch to check shapes  
+real_batch = next(iter(dataloader))
+images, labels = real_batch
+
+# Print shape of batch to verify 
+print(images.shape)
+print(labels.shape)
+
+# Undo normalization for visual
+images = images * 0.5 + 0.5
+plt.figure(figsize=(8, 8))
+for i in range(16):
+    plt.subplot(4, 4, i + 1)
+    plt.imshow(images[i].squeeze(), cmap='gray')
+    plt.axis('off')
+plt.show()
