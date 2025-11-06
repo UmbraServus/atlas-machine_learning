@@ -38,10 +38,7 @@ def bi_rnn(bi_cell, X, h_0, h_t):
         h_next = bi_cell.backward(h_next, X[step])
         H_bwd[step] = h_next
 
-    # Concatenate forward and backward hidden states (vectorized)
-    H = np.concatenate((H_fwd, H_bwd), axis=2)  # shape: (t, m, 2h)
-
-    # Vectorized output computation
-    Y_logits = np.dot(H, bi_cell.Wy) + bi_cell.by  # shape: (t, m, o)
-    Y = bi_cell.softmax(Y_logits)
+    # Concatenate forward and backward hidden states
+    H = np.concatenate((H_fwd, H_bwd), axis=2)
+    Y = bi_cell.output(H)
     return H, Y
