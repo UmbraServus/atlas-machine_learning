@@ -73,12 +73,12 @@ class BidirectionalCell():
         h_prev = np.tanh(np.dot(h_concat, self.Whb) + self.bhb)
 
         return h_prev
-    
+
     def softmax(self, x):
         """Softmax activation function with numerical stability."""
         exp_x = np.exp(x - np.max(x, axis=1, keepdims=True))
         return exp_x / np.sum(exp_x, axis=1, keepdims=True)
-    
+
     def output(self, H):
         """ computes all outputs for the RNN
         H: numpy.ndarray of shape (t, m, 2h) that contains the
@@ -86,12 +86,12 @@ class BidirectionalCell():
         t is the number of time steps,
         m is the batch size,
         h is the dimensionality of the hidden states
-        
+
         Returns: Y, numpy.ndarray of shape (t, m, o) that contains
         all the outputs"""
         # Get dimensions
         t, m, _ = H.shape
-        o = self.Wy.shape[1] # Output dimensionality
+        o = self.Wy.shape[1]  # Output dimensionality
 
         # Initialize outputs
         Y = np.zeros((t, m, o))
