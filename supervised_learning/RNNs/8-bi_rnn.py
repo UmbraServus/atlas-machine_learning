@@ -42,6 +42,6 @@ def bi_rnn(bi_cell, X, h_0, h_t):
     H = np.concatenate((H_fwd, H_bwd), axis=2)  # shape: (t, m, 2h)
 
     # Vectorized output computation
-    Y = np.dot(H, bi_cell.Wy) + bi_cell.by  # shape: (t, m, o)
-
+    Y_logits = np.dot(H, bi_cell.Wy) + bi_cell.by  # shape: (t, m, o)
+    Y = bi_cell.softmax(Y_logits)
     return H, Y
