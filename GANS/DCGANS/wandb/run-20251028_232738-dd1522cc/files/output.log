@@ -1,0 +1,60 @@
+100.0%
+100.0%
+100.0%
+100.0%
+torch.Size([128, 1, 28, 28])
+torch.Size([128])
+Generator parameters: 856,065
+Discriminator parameters: 659,905
+Traceback (most recent call last):
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 282, in <module>
+    generator, discriminator = train_dcgan(dataloader, epochs, batch_size)
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 208, in train_dcgan
+    fake_imgs = generator(z)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 111, in forward
+    img = self.conv_blocks(out)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\container.py", line 250, in forward
+    input = module(input)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\conv.py", line 543, in _conv_forward
+    return F.conv2d(
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 282, in <module>
+    generator, discriminator = train_dcgan(dataloader, epochs, batch_size)
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 208, in train_dcgan
+    fake_imgs = generator(z)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\Atlas\atlas-machine_learning\GANS\DCGANS\mnsit_dcgans.py", line 111, in forward
+    img = self.conv_blocks(out)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\container.py", line 250, in forward
+    input = module(input)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\conv.py", line 548, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\phoen\anaconda3\envs\ML\lib\site-packages\torch\nn\modules\conv.py", line 543, in _conv_forward
+    return F.conv2d(
+KeyboardInterrupt
