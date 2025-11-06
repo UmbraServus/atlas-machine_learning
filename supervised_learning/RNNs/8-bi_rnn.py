@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" module that defines the bi rnn forward function """ 
+""" module that defines the bi rnn forward function """
 import numpy as np
 
 
@@ -8,7 +8,8 @@ def bi_rnn(bi_cell, X, h_0, h_t):
     Performs forward propagation for a Bidirectional RNN
 
     Args:
-        bi_cell: instance of a BidirectionalCell with methods `forward`, `backward`
+        bi_cell: instance of a BidirectionalCell with
+        methods `forward`, `backward`, and `output`
         X: input data of shape (t, m, i)
            t = timesteps, m = batch size, i = input size
         h_0: initial forward hidden state, shape (m, h)
