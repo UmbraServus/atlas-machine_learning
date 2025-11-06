@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+""" module that defines the bi_rnn_forward function """ 
 import numpy as np
+
 
 def bi_rnn_forward(bi_cell, X, h_0, h_t):
     """
