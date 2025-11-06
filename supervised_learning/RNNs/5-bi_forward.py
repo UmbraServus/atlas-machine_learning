@@ -2,6 +2,7 @@
 """ module that defines the BiRNN class """
 import numpy as np
 
+
 class BidirectionalCell():
 
     def __init__(self, i, h, o):
@@ -21,8 +22,7 @@ class BidirectionalCell():
         weights should be initialized using a random normal distribution
         The weights will be used on the right side for matrix multiplication
         The biases should be initialized as zeros
-
-        """
+"""
 
         self.Whf = np.random.normal(0, 1, (i + h, h))
         self.Whb = np.random.normal(0, 1, (i + h, h))
