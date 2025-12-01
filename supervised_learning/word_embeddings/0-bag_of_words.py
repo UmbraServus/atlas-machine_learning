@@ -42,6 +42,7 @@ features: list of the features used for embeddings"""
     embeddings = np.zeros((s, f), dtype=int)
 
     feature_index = {word: idx for idx, word in enumerate(features)}
+    features = np.array(features)
 
     for i, sentence in enumerate(sentences):
         sentence = re.sub(r"[!?.,;:']", "", sentence)
