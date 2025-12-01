@@ -10,7 +10,7 @@ def tf_idf(sentences, vocab=None):
     sentences: list of sentences to analyze
     vocab: list of the vocabulary words to use for the analysis
         If None, all words within sentences should be used
-    
+
     Returns: embeddings, features
 
     embeddings: numpy.ndarray of shape (s, f) containing the embeddings
