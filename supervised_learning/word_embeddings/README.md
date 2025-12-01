@@ -1,2 +1,2 @@
 0-bag_of_words - creates a bag of words matrix from sentences and vocab features.
-1-
+1-tf_idf - creates a term frequency - inverse doc frequency  matrix.
