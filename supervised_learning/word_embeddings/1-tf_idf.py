@@ -22,7 +22,7 @@ def tf_idf(sentences, vocab=None):
 
     N = len(sentences)
     df = np.count_nonzero(tf_matrix > 0, axis=0)
-    idf = np.log(N / df)
+    idf = np.log(N / df) + 1
 
     tfidf = tf_matrix * idf
 
