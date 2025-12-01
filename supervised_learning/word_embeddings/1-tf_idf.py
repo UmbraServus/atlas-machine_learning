@@ -25,7 +25,7 @@ def tf_idf(sentences, vocab=None):
         idf_values = np.zeros(len(features))
         for j, feature in enumerate(features):
             df = sum(1 for sentence in sentences if feature in sentence.lower().split())
-            idf_values[j] = math.log((N + 1) / (df + 1)) + 1  # Smoothing
+            idf_values[j] = math.log((N + 1) / (df + 1))
         return idf_values
 
     # Get term frequency matrix and features
