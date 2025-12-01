@@ -18,29 +18,17 @@ def tf_idf(sentences, vocab=None):
         f is the number of features analyzed
     features: list of the features used for embeddings"""
 
-    def compute_idf(sentences, features):
-        """Helper function to compute IDF values for features"""
-        import math
-        N = len(sentences)
-        idf_values = np.zeros(len(features))
-        for j, feature in enumerate(features):
-            df = sum(1 for sentence in sentences if feature in sentence.lower().split())
-            idf_values[j] = math.log((N + 1) / (df + 1))
-        return idf_values
-
-    # Get term frequency matrix and features
     tf_matrix, features = bag_of_words(sentences, vocab)
-    s, f = tf_matrix.shape
 
-    # Compute IDF values
-    idf_values = compute_idf(sentences, features)
+    N = len(sentences)
+    df = np.count_nonzero(tf_matrix > 0, axis=0)
+    idf = np.log((N + 1) / (df + 1))
 
-    # Compute TF-IDF matrix
-    tf_idf_matrix = tf_matrix * idf_values
+    tfidf = tf_matrix * idf
 
     # Row-normalize
-    row_norms = np.linalg.norm(tf_idf_matrix, axis=1, keepdims=True)
-    row_norms[row_norms == 0] = 1.0  # avoid division by zero
-    tf_idf_matrix = tf_idf_matrix / row_norms
+    norms = np.linalg.norm(tfidf, axis=1, keepdims=True)
+    norms[norms == 0] = 1
+    tfidf_normalized = tfidf / norms
 
-    return tf_idf_matrix, features
+    return tfidf_normalized, features
