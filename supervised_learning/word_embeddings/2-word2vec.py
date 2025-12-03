@@ -7,7 +7,7 @@ from gensim.models import Word2Vec
 def word2vec_model(sentences, vector_size=100, min_count=5, window=5, 
                    negative=5, cbow=True, epochs=5, seed=0, workers=1):
     """Creates, builds and trains a gensim word2vec model
-    
+
     Args:
         sentences: list of sentences to be trained on
         vector_size: dimensionality of the embedding layer
@@ -18,13 +18,13 @@ def word2vec_model(sentences, vector_size=100, min_count=5, window=5,
         epochs: number of iterations to train over
         seed: seed for the random number generator
         workers: number of worker threads to train the model
-    
+
     Returns:
         the trained model
     """
     # Determine skip_gram parameter: 0 for CBOW, 1 for Skip-gram
     skip_gram = 0 if cbow else 1
-    
+
     # Create the Word2Vec model
     model = Word2Vec(
         sentences=sentences,
@@ -36,7 +36,7 @@ def word2vec_model(sentences, vector_size=100, min_count=5, window=5,
         seed=seed,
         workers=workers
     )
-    
+
         # Build vocabulary
     model.build_vocab(sentences)
 
