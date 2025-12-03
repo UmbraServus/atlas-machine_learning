@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def uni_bleu(references, sentence): 
+def uni_bleu(references, sentence):
     """that calculates the unigram BLEU score for a sentence:
 
 references: list of reference translations
