@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """creates a Word2Vec embedding matrix"""
-import numpy as np
 from gensim.models import Word2Vec
 
 
