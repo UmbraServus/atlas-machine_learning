@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ converts a gensim word2vec model to a keras embedding matrix"""
 import tensorflow as tf
-from tensorflow.keras.layers import Embedding
+
 
 
 def gensim_to_keras(model):
@@ -23,7 +23,7 @@ def gensim_to_keras(model):
     # which row in `weights` corresponds to which word?
     words = word_vectors.index_to_key
 
-    layer = Embedding(
+    layer = tf.keras.layers.Embedding(
         input_dim=weights.shape[0],
         output_dim=weights.shape[1],
         weights=[weights],
