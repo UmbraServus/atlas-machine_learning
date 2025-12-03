@@ -11,5 +11,3 @@ each reference translation is a list of the words in the translation
 sentence: list containing the model proposed sentence
 
 Returns: the unigram BLEU score"""
-
-return blue_score
