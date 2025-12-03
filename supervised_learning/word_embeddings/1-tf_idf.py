@@ -6,7 +6,7 @@ import numpy as np
 
 def tf_idf(sentences, vocab=None):
     """that creates a TF-IDF embedding:
-    
+
     sentences: list of sentences to analyze
     vocab: list of the vocabulary words to use for the analysis
         If None, all words within sentences should be used
