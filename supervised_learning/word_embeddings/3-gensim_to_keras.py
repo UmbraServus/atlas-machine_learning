@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """ converts a gensim word2vec model to a keras embedding matrix"""
-import numpy as np
-import keras
-from keras.layers import Embedding
+import tensorflow as tf
+from tensorflow.keras.layers import Embedding
 
 
 def gensim_to_keras(model):
