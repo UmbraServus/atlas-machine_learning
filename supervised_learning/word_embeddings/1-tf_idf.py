@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""creates a TF-IDF embedding matrix"""
 bag_of_words = __import__('0-bag_of_words').bag_of_words
+"""creates a TF-IDF embedding matrix"""
 import numpy as np
 
 
