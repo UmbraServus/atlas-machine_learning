@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""creates a Word2Vec gensim model"""
+"""creates a fasttext gensim model"""
 import gensim
 
 
-def word2vec_model(sentences, vector_size=100, min_count=5, window=5,
-                   negative=5, cbow=True, epochs=5, seed=0, workers=1):
-    """Creates, builds and trains a gensim word2vec model
+def fasttext_model(sentences, vector_size=100, min_count=5, negative=5,
+                    window=5, cbow=True, epochs=5, seed=0, workers=1):
+    """Creates, builds and trains a gensim fasttext model
 
     Args:
         sentences: list of sentences to be trained on
@@ -25,7 +25,7 @@ def word2vec_model(sentences, vector_size=100, min_count=5, window=5,
     skip_gram = 0 if cbow else 1
 
     # Create the Word2Vec model
-    model = gensim.models.Word2Vec(
+    model = gensim.models.FastText(
         sentences=sentences,
         vector_size=vector_size,
         min_count=min_count,
