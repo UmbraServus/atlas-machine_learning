@@ -3,7 +3,6 @@
 import tensorflow as tf
 
 
-
 def gensim_to_keras(model):
     """Get a Keras 'Embedding' layer with weights set from Word2Vec model's
     learned word embeddings.
@@ -15,7 +14,7 @@ def gensim_to_keras(model):
     """
 
     # structure holding the result of training
-    word_vectors= model.wv
+    word_vectors = model.wv
 
     # vectors themselves, a 2D numpy array
     weights = word_vectors.vectors
