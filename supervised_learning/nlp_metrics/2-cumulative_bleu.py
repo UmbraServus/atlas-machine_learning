@@ -13,5 +13,3 @@ n: the size of the largest n-gram to use for evaluation
 All n-gram scores should be weighted evenly
 
 Returns: the cumulative n-gram BLEU score"""
-
-pass  # Replace with your implementation

@@ -12,5 +12,3 @@ sentence: list containing the model proposed sentence
 n: the size of the n-gram to use for evaluation
 
 Returns: the n-gram BLEU score"""
-
-pass  # Replace with your implementation
