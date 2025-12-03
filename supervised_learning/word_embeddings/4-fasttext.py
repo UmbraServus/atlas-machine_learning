@@ -4,7 +4,7 @@ import gensim
 
 
 def fasttext_model(sentences, vector_size=100, min_count=5, negative=5,
-                    window=5, cbow=True, epochs=5, seed=0, workers=1):
+                window=5, cbow=True, epochs=5, seed=0, workers=1):
     """Creates, builds and trains a gensim fasttext model
 
     Args:
