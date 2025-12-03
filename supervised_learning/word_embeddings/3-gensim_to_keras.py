@@ -4,6 +4,7 @@ import numpy as np
 import keras
 from keras.layers import Embedding
 
+
 def gensim_to_keras(model):
     """Get a Keras 'Embedding' layer with weights set from Word2Vec model's
     learned word embeddings.
@@ -13,9 +14,15 @@ def gensim_to_keras(model):
         Embedding layer, to be used as input to deeper network layers.
 
     """
-    word_vectors= model.wv  # structure holding the result of training
-    weights = word_vectors.vectors  # vectors themselves, a 2D numpy array    
-    words = word_vectors.index_to_key  # which row in `weights` corresponds to which word?
+
+    # structure holding the result of training
+    word_vectors= model.wv
+
+    # vectors themselves, a 2D numpy array
+    weights = word_vectors.vectors
+
+    # which row in `weights` corresponds to which word?
+    words = word_vectors.index_to_key
 
     layer = Embedding(
         input_dim=weights.shape[0],
