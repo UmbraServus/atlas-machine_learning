@@ -13,4 +13,4 @@ n: the size of the n-gram to use for evaluation
 
 Returns: the n-gram BLEU score"""
 
-return ngram_blue_score
+pass  # Replace with your implementation

@@ -2,6 +2,7 @@
 """ calculates the culminative BLEU score for a sentence """
 import numpy as np
 
+
 def cumulative_bleu(references, sentence, n):
     """that calculates the cumulative n-gram BLEU score for a sentence:
 
@@ -13,4 +14,4 @@ All n-gram scores should be weighted evenly
 
 Returns: the cumulative n-gram BLEU score"""
 
-return cumulative_blue_score
+pass  # Replace with your implementation
