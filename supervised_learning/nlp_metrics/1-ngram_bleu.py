@@ -9,7 +9,7 @@ def ngram_bleu(references, sentence, n):
 
     Args:
         references: list of reference translations
-            each reference translation is a list of the words in the translation
+            each ref trnslation is a list of the words in the tnslation
         sentence: list containing the model proposed sentence
         n: size of the n-grams to use
 
@@ -66,7 +66,9 @@ def ngram_bleu(references, sentence, n):
         matching_ngrams += min(count, max_ref_counts.get(ng, 0))
 
     # Precision
-    precision = matching_ngrams / total_cand_ngrams if total_cand_ngrams > 0 else 0
+    precision = (matching_ngrams /
+                 total_cand_ngrams if total_cand_ngrams > 0 else 0
+    )
 
     # Final BLEU score
     bleu_score = BP * precision
