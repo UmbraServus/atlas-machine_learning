@@ -68,7 +68,7 @@ def ngram_bleu(references, sentence, n):
     # Precision
     precision = (matching_ngrams /
                  total_cand_ngrams if total_cand_ngrams > 0 else 0
-    )
+                 )
 
     # Final BLEU score
     bleu_score = BP * precision
