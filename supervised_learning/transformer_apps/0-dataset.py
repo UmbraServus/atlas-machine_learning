@@ -2,7 +2,7 @@
 """ Dataset for Machine Translation """
 
 import tensorflow_datasets as tfds
-from transformers import AutoTokenizer
+import transformers
 
 
 class Dataset:
@@ -44,10 +44,10 @@ class Dataset:
         vocab_size = 2 ** 13  # 8192
 
         # Load pretrained tokenizers
-        tokenizer_pt_base = AutoTokenizer.from_pretrained(
+        tokenizer_pt_base = transformers.AutoTokenizer.from_pretrained(
             "neuralmind/bert-base-portuguese-cased"
         )
-        tokenizer_en_base = AutoTokenizer.from_pretrained(
+        tokenizer_en_base = transformers.AutoTokenizer.from_pretrained(
             "bert-base-uncased"
         )
 
