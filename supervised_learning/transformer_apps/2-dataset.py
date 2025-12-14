@@ -128,7 +128,7 @@ class Dataset:
         pt_tokens, en_tokens = tf.py_function(
             func=self.encode,
             inp=[pt, en],
-            Tout=[tf.int32, tf.int32]
+            Tout=[tf.int64, tf.int64]
         )
 
         # Set shape for TF graph compatibility
