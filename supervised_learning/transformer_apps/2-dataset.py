@@ -76,7 +76,6 @@ class Dataset:
 
         return tokenizer_pt, tokenizer_en
 
-
     def encode(self, pt, en):
         """Encodes a Portuguese sentence and its corresponding English sentence
     into token IDs suitable for the model.
@@ -113,7 +112,8 @@ class Dataset:
     def tf_encode(self, pt, en):
         """
         TensorFlow wrapper for encode method.
-        Converts tf.Tensor input to token ID tensors suitable for tf.data.Dataset.
+        Converts tf.Tensor input to token ID tensors
+        suitable for tf.data.Dataset.
 
         Args:
             pt: tf.Tensor containing Portuguese sentence
