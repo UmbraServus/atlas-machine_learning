@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+""" Creates masks for transformer """
 import tensorflow as tf
+
 
 def create_masks(inputs, target):
     """
@@ -11,7 +14,8 @@ def create_masks(inputs, target):
     Returns:
         encoder_mask: tf.Tensor of shape (batch_size, 1, 1, seq_len_in),
         padding mask for encoder
-        combined_mask: tf.Tensor of shape (batch_size, 1, seq_len_out, seq_len_out),
+        combined_mask: tf.Tensor of shape
+        (batch_size, 1, seq_len_out, seq_len_out),
         look-ahead + target padding mask for decoder
         decoder_mask: tf.Tensor of shape (batch_size, 1, 1, seq_len_in),
         padding mask for 2nd attention block in decoder
@@ -29,13 +33,15 @@ def create_masks(inputs, target):
 
     # Look-ahead mask for target
     seq_len_out = tf.shape(target)[1]
-    look_ahead_mask = 1 - tf.linalg.band_part(tf.ones((seq_len_out, seq_len_out)), -1, 0)
+    look_ahead_mask = 1 - tf.linalg.band_part(
+        tf.ones((seq_len_out, seq_len_out)), -1, 0
+        )
     # Shape (1, seq_len_out, seq_len_out)
     look_ahead_mask = look_ahead_mask[tf.newaxis, :, :]
 
     # Target padding mask
     target_padding_mask = tf.cast(tf.math.equal(target, 0), tf.float32)
-    target_padding_mask = target_padding_mask[:, tf.newaxis, tf.newaxis, :]  # (batch_size, 1, 1, seq_len_out)
+    target_padding_mask = target_padding_mask[:, tf.newaxis, tf.newaxis, :]
 
     # Combine look-ahead mask and target padding mask
     combined_mask = tf.maximum(look_ahead_mask, target_padding_mask[:, :, :, :])
