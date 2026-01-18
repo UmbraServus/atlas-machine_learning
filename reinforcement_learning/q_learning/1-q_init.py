@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """module for initializing Q table"""
 import numpy as np
-import gymnasium as gym
 
 
 def q_init(env):
