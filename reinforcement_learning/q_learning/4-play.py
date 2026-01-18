@@ -1,4 +1,4 @@
-#!/usr/bin/enc python3
+#!/usr/bin/env python3
 """module for having the agent play the environment"""
 import numpy as np
 
