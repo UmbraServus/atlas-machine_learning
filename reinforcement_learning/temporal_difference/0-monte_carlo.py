@@ -26,7 +26,7 @@ def monte_carlo(env, V, policy, episodes=5000, max_steps=100, alpha=0.1,
         VisitedStatesRewards = []
 
         # Reset environment
-        state,_ = env.reset()
+        state, _ = env.reset()
 
         # Generate a full episode
         for _ in range(max_steps):
