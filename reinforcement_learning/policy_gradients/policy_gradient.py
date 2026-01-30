@@ -1,4 +1,4 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
 """ module for policy gradient """
 import numpy as np
 
@@ -20,3 +20,13 @@ def policy(matrix, weight):
     probs = exp_logits / np.sum(exp_logits)
 
     return probs
+
+def policy_gradient(matrix, weight):
+    """ Policy gradient for policy gradients. using monte carlo method.
+
+    args:
+        matrix: matrix of features (representing states)
+        weight: matrix of weights (representing actions)
+
+    returns:
+        action and the gradient"""
