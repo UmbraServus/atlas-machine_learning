@@ -6,7 +6,7 @@ import numpy as np
 def policy(matrix, weight):
     """ Linear softmax policy for policy gradients.
     """
-    # Ensure 1D feature vector
+    # Ensure 1D feature vector representing states
     x = np.array(matrix).reshape(-1)
 
     # Linear logits
