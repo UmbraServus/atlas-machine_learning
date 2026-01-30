@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def train(env, nb_episodes, alpha=0.000045, gamma=0.98):
+def train(env, nb_episodes, alpha=0.000045, gamma=0.98, show_result=False):
     """ Implements full training using policy gradient.
 
     args:
@@ -11,6 +11,7 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98):
         nb_episodes: number of episodes used for training
         alpha: the learning rate
         gamma: the discount factor
+        show_result: if True, render the environment every 1000 episodes
 
     returns:
         all values of the score (sum of all rewards during one episode)
@@ -38,8 +39,15 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98):
         done = False
         truncated = False
 
+        # Determine if we should render this episode
+        render = show_result and (episode % 1000 == 0)
+
         # Collect episode trajectory
         while not (done or truncated):
+            # Render if needed
+            if render:
+                env.render()
+
             # Get action and gradient
             action, grad = policy_gradient(state, weight)
 
@@ -62,6 +70,11 @@ def train(env, nb_episodes, alpha=0.000045, gamma=0.98):
         for reward in reversed(rewards):
             G = reward + gamma * G
             returns.insert(0, G)
+
+        # Normalize returns (baseline)
+        returns = np.array(returns)
+        if len(returns) > 1:
+            returns = (returns - np.mean(returns)) / (np.std(returns) + 1e-9)
 
         # Update weights using policy gradient
         for t in range(len(gradients)):
