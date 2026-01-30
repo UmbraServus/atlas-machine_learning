@@ -19,7 +19,7 @@ def policy(matrix, weight):
     exp_logits = np.exp(action_logits)
     probs = exp_logits / np.sum(exp_logits)
 
-    return probs
+    return np.expand_dims(probs, axis=0)
 
 def policy_gradient(matrix, weight):
     """ Policy gradient for policy gradients. using monte carlo method.
@@ -29,4 +29,4 @@ def policy_gradient(matrix, weight):
         weight: matrix of weights (representing actions)
 
     returns:
-        action and the gradient"""
+        action and the gradient of """
