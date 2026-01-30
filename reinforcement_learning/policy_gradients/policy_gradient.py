@@ -10,7 +10,7 @@ def policy(matrix, weight):
     x = np.array(matrix).reshape(-1)
 
     # Linear logits
-    action_logits =  x.dot(weight)  # shape: (n_actions,)
+    action_logits = x.dot(weight)  # shape: (n_actions,)
 
     # Numerical stability trick (largest logit minus logits)
     action_logits -= np.max(action_logits)
@@ -20,6 +20,7 @@ def policy(matrix, weight):
     probs = exp_logits / np.sum(exp_logits)
 
     return np.expand_dims(probs, axis=0)
+
 
 def policy_gradient(matrix, weight):
     """ Policy gradient for policy gradients. using monte carlo method.
