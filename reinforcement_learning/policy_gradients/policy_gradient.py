@@ -34,14 +34,14 @@ def policy_gradient(matrix, weight):
 
     probs = policy(matrix, weight)
 
-    #sample an action from the probabilities.
+    # sample an action from the probabilities.
     action = np.argmax(probs)
 
     # Compute gradient of log-policy
-    probs = np.array(probs).reshape(-1) # 1d array for grad calc
-    x = np.array(matrix).reshape(-1) # 1d array for grad calc
-    grad = -probs[:, None] * x[None, :]   # shape: (n_actions, n_features)
+    probs = np.array(probs).reshape(-1)  # 1d array for grad calc
+    x = np.array(matrix).reshape(-1)  # 1d array for grad calc
+    grad = -probs[:, None] * x[None, :]  # shape: (n_actions, n_features)
     grad[action] = (1 - probs[action]) * x
-    grad = grad.T # transpose so that the rows n column are flipped.
+    grad = grad.T  # transpose so that the rows n column are flipped.
 
     return action, grad
