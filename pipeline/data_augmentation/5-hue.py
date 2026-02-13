@@ -10,5 +10,5 @@ args:
     delta: the amount the hue should change
 Returns:
     the altered image"""
-    img_hue = tf.image.random_hue(image, delta)
+    img_hue = tf.image.adjust_hue(image, delta)
     return img_hue
