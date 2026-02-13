@@ -10,6 +10,6 @@ args:
 Returns:
     the flipped image"""
 
-  flipped_image = tf.image.flip_left_right(image)
+    flipped_image = tf.image.flip_left_right(image)
 
-  return flipped_image
+    return flipped_image
