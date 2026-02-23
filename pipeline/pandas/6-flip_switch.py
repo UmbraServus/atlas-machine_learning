@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """module for reversin row order & flipping the column & rows using pandas"""
-import pandas as pd
 
 
 def flip_switch(df):

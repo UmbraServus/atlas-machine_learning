@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Module for pruning NaN values"""
-import pandas as pd
 
 
 def prune(df):

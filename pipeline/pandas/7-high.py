@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """module for sorting in descending order"""
-import pandas as pd
 
 
 def high(df):

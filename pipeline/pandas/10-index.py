@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """module for turning timestamp from column to index in a dataframe"""
-import pandas as pd
 
 
 def index(df):

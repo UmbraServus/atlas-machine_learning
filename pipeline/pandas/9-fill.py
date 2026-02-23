@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Module for filling using panda"""
-import pandas as pd
 
 
 def fill(df):
