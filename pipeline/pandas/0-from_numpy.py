@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 import pandas as pd
-import numpy as np
-import string
 
 
 def from_numpy(array):
@@ -12,6 +10,6 @@ args:
     and capitalized. There will not be more than 26 columns.
 Returns: the newly created pd.DataFrame"""
     n_col = array.shape[1]
-    columns = list(string.ascii_uppercase[:n_col])
+    columns = [chr(65 + i) for i in range(n_col)]
     df = pd.DataFrame(array, columns=columns)
     return df
