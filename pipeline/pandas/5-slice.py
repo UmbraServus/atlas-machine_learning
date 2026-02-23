@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """module for slicing a df"""
-import pandas as pd
 
 
 def slice(df):
