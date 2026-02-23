@@ -19,5 +19,6 @@ Returns:
     the concatenated pd.DataFrame."""
     df1 = index(df1)
     df2 = index(df2)
+    df2 = df2.loc[:1417411920]
     df_concat = pd.concat([df2, df1], keys=['bitstamp','coinbase'])
     return df_concat
