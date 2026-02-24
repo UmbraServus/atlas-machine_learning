@@ -19,7 +19,6 @@ def availableShips(passengerCount):
 
         for ship in data['results']:
             passengers = ship['passengers'].replace(',', '')
-            ships.append(passengers)
             if passengers.isdigit() and int(passengers) >= passengerCount:
                 ships.append(ship['name'])
 
