@@ -8,6 +8,8 @@ import requests as r
 
 if __name__ == '__main__':
     url = sys.argv[1]
+    if url.startswith("http://0.0.0.0"):
+        url = url.replace("0.0.0.0", "127.0.0.1")
     response = r.get(url)
 
     if response.status_code == 404:
