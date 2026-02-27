@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""module for getting user location"""
+import requests
 import sys
 import time
 
