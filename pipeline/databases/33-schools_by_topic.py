@@ -9,7 +9,7 @@ args:
     topic (string): topic searched
 returns:
     list: documents in a collection in mongodb where topic is specified"""
-    if mongo_collection or topic is None:
+    if mongo_collection is None or topic is None:
         return []
     else:
         return list(mongo_collection.find({"topics": topic}))
