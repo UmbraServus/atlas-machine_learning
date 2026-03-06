@@ -24,8 +24,8 @@ def main():
         print(f"\t{method}: {count}")
 
     # n of GET /status requests
-    satus_count = collection.count_documents({"method": "GET", "path": "/status"})
+    status_count = collection.count_documents({"method": "GET", "path": "/status"})
     print(f"{status_count} status check")
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    main()
