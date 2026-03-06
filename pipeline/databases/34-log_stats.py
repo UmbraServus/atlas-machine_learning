@@ -16,7 +16,7 @@ def main():
     total = collection.count_documents({})
     print(f"{total} logs")
 
-    # method stats
+    # method stat
     methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
     print(f"Methods:")
     for method in methods:
